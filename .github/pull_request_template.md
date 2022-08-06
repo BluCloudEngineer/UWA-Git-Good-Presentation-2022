@@ -36,6 +36,7 @@ If you are not ready for your code to be reviewed, create this as a draft pull r
 
 -->
 
+*   [ ] I have created my change on a new branch (such as `bugfix/`, `documentation/` or `feature/`)
 *   [ ] My code conforms to the style guidelines of this project.
 *   [ ] I have run all linting and formatting scripts against my new code.
 *   [ ] I have added comments to my code (where applicable).
