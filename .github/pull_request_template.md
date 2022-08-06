@@ -15,6 +15,7 @@ For example: This pull request allows users to upload and download files.
 *   [ ] Documentation: Updating files that do not affect the code.
 *   [ ] Hotfix: Emergency update made to production ready code.
 *   [ ] New Feature: Added new code and unit tests that does not break the current codebase.
+*   [ ] Refactor: Improvements made to existing code but does not add new features.
 *   [ ] Security: Addresses security vulnerabilities, updating vulnerable code dependencies or removal of secrets that does not break the current codebase.
 
 ## Related GitHub Issues
