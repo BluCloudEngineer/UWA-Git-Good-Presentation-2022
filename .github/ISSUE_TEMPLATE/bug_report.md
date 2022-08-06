@@ -9,6 +9,13 @@ assignees: ""
 
 # Bug Report
 
+## Bug Report Checklist
+
+Before submitting a new bug, please view the currently reported bugs [here](https://github.com/BluCloudEngineer/UWA-Git-Good-Presentation/issues). If your bug has not been reported, please complete this report:
+
+*   [ ] I have checked the GitHub issues tracker any my bug has **NOT** been previously reported.
+*   [ ] This report is for a single bug only, I will create a new report for a new bug to report.
+
 ## Describe the Bug
 
 <!-- Please provide an overview of the bug you encountered. if you are reporting more than one, please submit separate bug reports -->
@@ -41,8 +48,17 @@ assignees: ""
 
 ## Screenshots
 
-<!-- if you have any screenshots, please add them here -->
+<!-- If you have any screenshots, please add them here -->
 
 ## Additional Notes
 
 <!-- If you have any other notes to add, please add them here -->
+
+## Related Bugs
+
+<!-- If this bug is related to other bug(s), please add them here
+
+*   # 1
+*   # 3
+
+-->
