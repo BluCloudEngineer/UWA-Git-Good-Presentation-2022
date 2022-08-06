@@ -17,8 +17,10 @@ assignees: ""
 
 <!-- Please include as much information as you can of the device you were using when you encountered the bug -->
 
-*   Operating System: Windows 10
+*   Operating System: Windows 10 OS build 19044.1826
 *   Browser: Google Chrome Version 104.0.5112.79 (Official Build) (64-bit)
+*   Latest version of the code: v1.0.24
+*   Git commit ID of the code: 6b587666e9aa86fd39fcaf9f63273246822324fe
 
 ## Steps to Reproduce
 
