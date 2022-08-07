@@ -3,8 +3,8 @@ from app import app
 
 def test_accept_get_request():
     """
-    Make a GET request to the main webpage, it should return
-    a 200 response and have a Content-Type: header of 
+    Make a HTTP GET request to the main webpage, it should
+    return a 200 response and have a Content-Type header of
     text/html; charset=utf-8
     """
     # Make HTTP response
@@ -16,9 +16,9 @@ def test_accept_get_request():
 
 def test_reject_post_request():
     """
-    Make a POST request to the main webpage, it should fail
-    and return a 405 error and have a Content-Type: header of
-    text/html; charset=utf-8
+    Make a HTTP POST request to the main webpage, it should
+    fail and return a 405 error and have a Content-Type
+    header of text/html; charset=utf-8
     """
     # Make HTTP response
     response = app.test_client().post("/")
