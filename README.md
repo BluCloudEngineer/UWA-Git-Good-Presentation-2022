@@ -24,6 +24,18 @@ sudo apt install python3-flask -y
 sudo pip3 install -r requirements.txt
 ```
 
+## Code Linting
+
+To run linting over the code, run the following commands in Visual Studio Code:
+
+1.  Press `F1`.
+
+2.  Search for `Python: Run Linting`.
+
+3.  Press `CTRL + ~` to open the inbuilt Terminal.
+
+4.  Select `PROBLEMS` and address the identified linting issue(s).
+
 ## Running Unit Tests
 
 To run all unit tests, run the following command:
