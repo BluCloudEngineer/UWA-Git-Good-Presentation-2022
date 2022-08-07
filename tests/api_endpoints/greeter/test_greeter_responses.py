@@ -48,7 +48,10 @@ def test_anonymous_user_2():
     parameters but do not include "name"
     """
     # Make HTTP response
-    response = app.test_client().get("/greeter?food=good&caffeine=low")
+    response = app.test_client().get("/greeter", query_string={
+        "food": "good",
+        "caffeine": "low"
+    })
     
     # Run assertions
     assert response.status_code == 200
