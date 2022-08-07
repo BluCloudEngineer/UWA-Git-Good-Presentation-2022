@@ -15,6 +15,11 @@
 
 Demonstration files to build and deploy a sample Python Flask web application to Docker Hub and Amazon Web Services (AWS).
 
+## Assumptions
+
+*   You will need a [Docker Hub](https://hub.docker.com/) account.
+*   You will need to create a Docker Access Token and add it as a secret to your GitHub repository. Please see the reference `Build and push Docker images` in the `REFERENCES.md` file.
+
 ## Installation
 
 Run the following commands to download and install the required Python Dependencies:
@@ -71,7 +76,7 @@ Complete this section if you want to build and run a Docker container
 To build the Python web application Docker Container, run the following command:
 
 ```bash
-docker build -t uwapythonwebapp .
+docker build -t uwagitgoodwebapp .
 ```
 
 ### Run Docker Container
@@ -79,7 +84,7 @@ docker build -t uwapythonwebapp .
 To run the Python web application Docker Container, run the following command:
 
 ```bash
-docker run -it --rm -p 5000:5000 uwapythonwebapp:latest
+docker run -it --rm -p 5000:5000 uwagitgoodwebapp:latest
 ```
 
 ## Web Application Usage
