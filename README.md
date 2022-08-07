@@ -16,9 +16,10 @@ Demonstration files to build and deploy a sample Python Flask web application to
 
 ## Installation
 
-Run the following command to download and install the required Python Dependencies:
+Run the following commands to download and install the required Python Dependencies:
 
 ```bash
+sudo apt install python3-flask -y
 sudo pip3 install -r requirements.txt
 ```
 
