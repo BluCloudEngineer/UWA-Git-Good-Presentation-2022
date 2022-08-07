@@ -4,6 +4,7 @@
     "python.languageServer": "Default",
     "cSpell.words": [
         "Kenobi",
+        "Pylint",
         "pytest"
     ]
 }
