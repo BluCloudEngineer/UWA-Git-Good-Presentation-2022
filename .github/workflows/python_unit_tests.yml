@@ -8,7 +8,7 @@ on:
       - "feature/**"
 
 jobs:
-  Run Python Unit Tests:
+  Run-Python-Unit-Tests:
     runs-on: "ubuntu-latest"
     steps:
       - name: "Checkout Code"
