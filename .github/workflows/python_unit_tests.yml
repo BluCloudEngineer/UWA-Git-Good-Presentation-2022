@@ -8,8 +8,10 @@ on:
       - "feature/**"
 
 jobs:
-  Run_Unit_Tests:
+  Run Python Unit Tests:
     runs-on: "ubuntu-latest"
     steps:
       - name: "Checkout Code"
         uses: actions/checkout@v2.4.2
+      - name: "Install Python Dependencies"
+        run: "pip3 install -r requirements.txt"
