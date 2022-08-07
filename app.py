@@ -2,14 +2,14 @@ from flask import Flask, render_template, request
 
 app = Flask(__name__)
 
-@app.route("/")
+@app.route("/", methods=["GET"])
 def default():
     """
     Returns the default static webpage to the user.
     """
     return render_template("index.html")
 
-@app.route("/greeter")
+@app.route("/greeter", methods=["GET"])
 def greeter():
     """
     When calling this APi endpoint you must supply a
