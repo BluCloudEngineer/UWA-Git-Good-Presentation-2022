@@ -13,3 +13,25 @@
 ![GitHub Weekly Commit Activity](https://img.shields.io/github/commit-activity/w/BluCloudEngineer/UWA-Git-Good-Presentation)
 
 Demonstration files to build and deploy a sample Python Flask web application to Docker Hub and Amazon Web Services (AWS).
+
+## Installation
+
+Run the following command to download and install the required Python Dependencies:
+
+```bash
+sudo pip3 install -r requirements.txt
+```
+
+## Running the Web Application
+
+Run the following command to start the web application:
+
+```bash
+flask run
+```
+
+Then open a web browser and navigate [to](http://127.0.0.1:5000/):
+
+```
+http://127.0.0.1:5000/
+```
