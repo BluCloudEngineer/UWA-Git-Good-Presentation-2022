@@ -87,3 +87,27 @@ def test_adam_jensen_request():
     assert response.status_code == 200
     assert response.content_type == "text/html; charset=utf-8"
     assert response.data.decode("utf-8") == "I never asked for this..."
+
+def test_obi_wan_kenobi_request():
+    """
+    Make a HTTP GET request to the greeter API endpoint with
+    the name parameter set to the following:
+    1.  Obi Wan
+    2.  Obi-Wan
+    3.  Obi-Wan Kenobi
+    """
+    names = [
+        "Obi Wan",
+        "Obi-Wan",
+        "Obi-Wan Kenobi"
+    ]
+    for name in names:
+        # Make HTTP response
+        response = app.test_client().get("/greeter", query_string={
+            "name": name
+        })
+
+        # Run assertions
+        assert response.status_code == 200
+        assert response.content_type == "text/html; charset=utf-8"
+        assert response.data.decode("utf-8") == "Hello There!"
