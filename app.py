@@ -19,7 +19,7 @@ def greeter():
     responses back to the user.
     """
     # Get the name of the user
-    name = request.args.get("name").title()
+    name = request.args.get("name")
 
     # Depending on the name, return a different response
     if name == None:
@@ -33,6 +33,6 @@ def greeter():
     elif name == "Heavy":
         response = "It costs four hundred thousand dollars to fire this weapon, for twelve seconds."
     else:
-        response = "Hi {}!".format(name)
+        response = "Hi {}!".format(name.title())
     
     return response
