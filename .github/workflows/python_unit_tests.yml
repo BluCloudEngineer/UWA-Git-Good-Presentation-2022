@@ -1,4 +1,4 @@
-name: "Run pytest unit tests, Python PEP 8 linting and push Docker container to Docker Hub"
+name: "Run pytest unit tests"
 
 on:
   push:
