@@ -50,13 +50,41 @@ If you want to print the tests standard output to the screen, run the following 
 python3.10 -m pytest -s tests/
 ```
 
-## Running the Web Application
+## Local Development
+
+Complete this section if you want to develop and run the code locally.
+
+### Running the Web Application
 
 Run the following command to start the web application:
 
 ```bash
 flask run
 ```
+
+## Docker Container Development
+
+Complete this section if you want to build and run a Docker container
+
+### Build Docker Container
+
+To build the Python web application Docker Container, run the following command:
+
+```bash
+docker build -t uwapythonwebapp .
+```
+
+### Run Docker Container
+
+To run the Python web application Docker Container, run the following command:
+
+```bash
+docker run -it --rm -p 5000:5000 uwapythonwebapp:latest
+```
+
+## Web Application Usage
+
+The steps in this section are the same whether you run the code locally or using a Docker container.
 
 ### Main Webpage
 
