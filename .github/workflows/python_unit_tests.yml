@@ -1,0 +1,17 @@
+name: "Run pytest Unit Tests"
+
+on:
+  push:
+    branches:
+      - "main"
+      - "develop"
+      - "feature/**"
+    branches-ignore:
+      - "documentation/**"
+
+jobs:
+  Run_Unit_Tests:
+    runs-on: "ubuntu-latest"
+    steps:
+      - name: "Checkout Code"
+        uses: actions/checkout@v2.4.2
