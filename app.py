@@ -5,7 +5,7 @@ app = Flask(__name__)
 @app.route("/")
 def default():
     """
-    The default static webpage
+    Returns the default static webpage to the user.
     """
     return render_template("index.html")
 
