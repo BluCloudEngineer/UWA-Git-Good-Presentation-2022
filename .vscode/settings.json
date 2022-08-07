@@ -1,0 +1,9 @@
+{
+    "python.linting.enabled": true,
+    "python.linting.pylintEnabled": true,
+    "python.languageServer": "Default",
+    "cSpell.words": [
+        "Kenobi",
+        "pytest"
+    ]
+}

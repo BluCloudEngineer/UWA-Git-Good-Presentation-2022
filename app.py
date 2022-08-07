@@ -1,3 +1,6 @@
+"""
+Python Flask web application
+"""
 from flask import Flask, render_template, request
 
 app = Flask(__name__)
@@ -22,7 +25,7 @@ def greeter():
     name = request.args.get("name")
 
     # Depending on the name, return a different response
-    if name == None:
+    if name is None:
         response = "Hi anonymous, what is your name?"
     elif name == "Gordon Freeman":
         response = "Wake up Mr Freeman!"
@@ -33,6 +36,6 @@ def greeter():
     elif name == "Heavy":
         response = "It costs four hundred thousand dollars to fire this weapon, for twelve seconds."
     else:
-        response = "Hi {}!".format(name.title())
-    
+        response = f"Hi {name.title()}!"
+
     return response

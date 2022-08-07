@@ -19,6 +19,7 @@ This file includes all URLs that were used during the development of this codeba
 | ----------------------------------------------------- | ------------------------------------------------------------------------------------------------------ |
 | Convert bytes to a string                             | https://stackoverflow.com/questions/606191/convert-bytes-to-a-string                                   |
 | flask_user_management_example                         | https://gitlab.com/patkennedy79/flask_user_management_example                                          |
+| How do I enable Pylint in VSCode?                     | https://stackoverflow.com/questions/62473201/how-do-i-enable-pylint-in-vscode                          |
 | How To Make a Web Application Using Flask in Python 3 | https://www.digitalocean.com/community/tutorials/how-to-make-a-web-application-using-flask-in-python-3 |
 | How To Process Incoming Request Data in Flask         | https://www.digitalocean.com/community/tutorials/processing-incoming-request-data-in-flask             |
 | How to set request args with Flask test_client?       | https://stackoverflow.com/questions/38747784/how-to-set-request-args-with-flask-test-client            |
