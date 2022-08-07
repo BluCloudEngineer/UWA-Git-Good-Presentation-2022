@@ -1,4 +1,4 @@
-name: "Run pytest Unit Tests"
+name: "Run pytest unit tests, Python PEP 8 linting and push Docker container to Docker Hub"
 
 on:
   push:
@@ -8,7 +8,7 @@ on:
       - "feature/**"
 
 jobs:
-  Run-Python-Unit-Tests:
+  Unit-Tests:
     runs-on: "ubuntu-latest"
     steps:
       - name: "Checkout Code"
