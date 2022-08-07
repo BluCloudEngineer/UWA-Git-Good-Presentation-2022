@@ -1,6 +1,7 @@
 import pytest
 from app import app
 
+
 def test_accept_get_request():
     """
     Make a HTTP GET request to the main webpage, it should
@@ -13,6 +14,7 @@ def test_accept_get_request():
     # Run assertions
     assert response.status_code == 200
     assert response.content_type == "text/html; charset=utf-8"
+
 
 def test_reject_post_request():
     """
@@ -42,6 +44,7 @@ def test_anonymous_user_1():
     assert response.content_type == "text/html; charset=utf-8"
     assert response.data.decode("utf-8") == "Hi anonymous, what is your name?"
 
+
 def test_anonymous_user_2():
     """
     Make a HTTP GET request to the greeter API endpoint with
@@ -52,11 +55,12 @@ def test_anonymous_user_2():
         "food": "good",
         "caffeine": "low"
     })
-    
+
     # Run assertions
     assert response.status_code == 200
     assert response.content_type == "text/html; charset=utf-8"
     assert response.data.decode("utf-8") == "Hi anonymous, what is your name?"
+
 
 def test_gordon_freeman_request():
     """
@@ -67,11 +71,12 @@ def test_gordon_freeman_request():
     response = app.test_client().get("/greeter", query_string={
         "name": "Gordon Freeman"
     })
-    
+
     # Run assertions
     assert response.status_code == 200
     assert response.content_type == "text/html; charset=utf-8"
     assert response.data.decode("utf-8") == "Wake up Mr Freeman!"
+
 
 def test_adam_jensen_request():
     """
@@ -82,11 +87,12 @@ def test_adam_jensen_request():
     response = app.test_client().get("/greeter", query_string={
         "name": "Adam Jensen"
     })
-    
+
     # Run assertions
     assert response.status_code == 200
     assert response.content_type == "text/html; charset=utf-8"
     assert response.data.decode("utf-8") == "I never asked for this..."
+
 
 def test_obi_wan_kenobi_request():
     """
@@ -112,6 +118,7 @@ def test_obi_wan_kenobi_request():
         assert response.content_type == "text/html; charset=utf-8"
         assert response.data.decode("utf-8") == "Hello There!"
 
+
 def test_tf2_heavy_request():
     """
     Make a HTTP GET request to the greeter API endpoint with
@@ -121,11 +128,13 @@ def test_tf2_heavy_request():
     response = app.test_client().get("/greeter", query_string={
         "name": "Heavy"
     })
-    
+
     # Run assertions
     assert response.status_code == 200
     assert response.content_type == "text/html; charset=utf-8"
-    assert response.data.decode("utf-8") == "It costs four hundred thousand dollars to fire this weapon, for twelve seconds."
+    assert response.data.decode(
+        "utf-8") == "It costs four hundred thousand dollars to fire this weapon, for twelve seconds."
+
 
 def test_default_request():
     """
@@ -137,10 +146,10 @@ def test_default_request():
     4.  Dilbert
     """
     tests = [
-        [ "Bob", "Hi Bob!" ],
-        [ "Jessica", "Hi Jessica!" ],
-        [ "Rex", "Hi Rex!" ],
-        [ "Dilbert", "Hi Dilbert!" ]
+        ["Bob", "Hi Bob!"],
+        ["Jessica", "Hi Jessica!"],
+        ["Rex", "Hi Rex!"],
+        ["Dilbert", "Hi Dilbert!"]
     ]
     for test in tests:
         # Make HTTP response
