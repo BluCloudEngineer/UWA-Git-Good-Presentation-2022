@@ -111,3 +111,18 @@ def test_obi_wan_kenobi_request():
         assert response.status_code == 200
         assert response.content_type == "text/html; charset=utf-8"
         assert response.data.decode("utf-8") == "Hello There!"
+
+def test_tf2_heavy_request():
+    """
+    Make a HTTP GET request to the greeter API endpoint with
+    the name parameter set to Heavy
+    """
+    # Make HTTP response
+    response = app.test_client().get("/greeter", query_string={
+        "name": "Heavy"
+    })
+    
+    # Run assertions
+    assert response.status_code == 200
+    assert response.content_type == "text/html; charset=utf-8"
+    assert response.data.decode("utf-8") == "It costs four hundred thousand dollars to fire this weapon, for twelve seconds."
