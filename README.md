@@ -8,6 +8,7 @@
 ![GitHub License](https://img.shields.io/github/license/BluCloudEngineer/UWA-Git-Good-Presentation)
 ![GitHub Open Issues](https://img.shields.io/github/issues-raw/BluCloudEngineer/UWA-Git-Good-Presentation)
 ![GitHub Open Pull Requests](https://img.shields.io/github/issues-pr-raw/BluCloudEngineer/UWA-Git-Good-Presentation)
+![GitHub Python Version](https://img.shields.io/badge/python%20version-3.10.4-blue)
 ![GitHub Repository Size](https://img.shields.io/github/repo-size/BluCloudEngineer/UWA-Git-Good-Presentation)
 ![GitHub Stars](https://img.shields.io/github/stars/BluCloudEngineer/UWA-Git-Good-Presentation)
 ![GitHub Weekly Commit Activity](https://img.shields.io/github/commit-activity/w/BluCloudEngineer/UWA-Git-Good-Presentation)
