@@ -155,33 +155,9 @@
         src="https://cpwebassets.codepen.io/assets/common/stopExecutionOnTimeout-1b93190375e9ccc259df3a57c1abc0e64599724ae30d7ea4c6877eb615f89387.js"></script>
 
     <script src='//cdnjs.cloudflare.com/ajax/libs/jquery/2.1.3/jquery.min.js'></script>
+
     <script id="rendered-js">
-        function EasyPeasyParallax() {
-            scrollPos = $(this).scrollTop();
-            $('.p1').css({
-                'background-position': '50% ' + -scrollPos / 4 + "px"
-            });
-
-            $('.p2').css({
-                'background-position': '50% ' + -scrollPos / 8 + "px"
-            });
-
-            $('.p3').css({
-                'background-position': '70% ' + -scrollPos / 16 + "px"
-            });
-
-            $('.parallax-text').css({
-                'margin-top': scrollPos / 2 + "px",
-                'opacity': 1 - scrollPos / 230
-            });
-
-        }
-        $(document).ready(function () {
-            $(window).scroll(function () {
-                EasyPeasyParallax();
-            });
-        });
-//# sourceURL=pen.js
+        src="{{ url_for('static', filename= 'js/index.js') }}"
     </script>
 
 
