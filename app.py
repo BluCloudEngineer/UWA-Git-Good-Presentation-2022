@@ -29,7 +29,7 @@ def greeter():
     elif name == "Adam Jensen":
         response = "I never asked for this..."
     elif name == "Obi-Wan Kenobi" or name == "Obi-Wan" or name == "Obi Wan":
-        response = "I have the high ground!"
+        response = "Hello There!"
     else:
         response = "Hi {}!".format(name)
     
