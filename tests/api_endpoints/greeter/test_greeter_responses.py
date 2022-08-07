@@ -57,3 +57,18 @@ def test_anonymous_user_2():
     assert response.status_code == 200
     assert response.content_type == "text/html; charset=utf-8"
     assert response.data.decode("utf-8") == "Hi anonymous, what is your name?"
+
+def test_gordon_freeman_request():
+    """
+    Make a HTTP GET request to the greeter API endpoint with
+    the name parameter set to Gordon Freeman
+    """
+    # Make HTTP response
+    response = app.test_client().get("/greeter", query_string={
+        "name": "Gordon Freeman"
+    })
+    
+    # Run assertions
+    assert response.status_code == 200
+    assert response.content_type == "text/html; charset=utf-8"
+    assert response.data.decode("utf-8") == "Wake up Mr Freeman!"
