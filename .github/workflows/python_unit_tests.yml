@@ -1,4 +1,4 @@
-name: "Run pytest unit tests"
+name: "Run pytest Unit Tests"
 
 on:
   push:
