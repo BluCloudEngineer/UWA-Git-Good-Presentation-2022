@@ -30,6 +30,8 @@ def greeter():
         response = "I never asked for this..."
     elif name == "Obi-Wan Kenobi" or name == "Obi-Wan" or name == "Obi Wan":
         response = "Hello There!"
+    elif name == "Heavy":
+        response = "It costs four hundred thousand dollars to fire this weapon, for twelve seconds."
     else:
         response = "Hi {}!".format(name)
     
