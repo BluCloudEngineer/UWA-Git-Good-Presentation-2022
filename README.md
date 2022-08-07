@@ -46,8 +46,46 @@ Run the following command to start the web application:
 flask run
 ```
 
-Then open a web browser and navigate [to](http://127.0.0.1:5000/):
+### Main Webpage
+
+Open a web browser and navigate [to](http://127.0.0.1:5000/):
 
 ```
 http://127.0.0.1:5000/
 ```
+
+or open a Terminal and run the following command:
+
+```bash
+curl -X GET http://127.0.0.1:5000/
+```
+
+### Greeter API - Default Response
+
+Open a web browser and navigate [to](http://127.0.0.1:5000/greeter):
+
+```
+http://127.0.0.1:5000/greeter
+```
+
+or open a Terminal and run the following command:
+
+```bash
+curl -X GET http://127.0.0.1:5000/greeter
+```
+
+### Greeter API - Custom Response
+
+Open a web browser and navigate [to](http://127.0.0.1:5000/greeter?name=test):
+
+```
+http://127.0.0.1:5000/greeter?name=test
+```
+
+or open a Terminal and run the following command:
+
+```bash
+curl -X GET http://127.0.0.1:5000/greeter?name=test
+```
+
+You can change the value of `name` to any string value of your choosing.
