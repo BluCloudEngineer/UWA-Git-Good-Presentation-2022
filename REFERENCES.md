@@ -18,6 +18,7 @@ This file includes all URLs that were used during the development of this codeba
 | Title                                                 | URL                                                                                                    |
 | ----------------------------------------------------- | ------------------------------------------------------------------------------------------------------ |
 | How To Make a Web Application Using Flask in Python 3 | https://www.digitalocean.com/community/tutorials/how-to-make-a-web-application-using-flask-in-python-3 |
+| How To Process Incoming Request Data in Flask         | https://www.digitalocean.com/community/tutorials/processing-incoming-request-data-in-flask             |
 | Python .gitignore file                                | https://raw.githubusercontent.com/github/gitignore/main/Python.gitignore                               |
 
 ### Web Site Development
