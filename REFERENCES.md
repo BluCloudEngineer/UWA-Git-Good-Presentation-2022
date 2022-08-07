@@ -20,6 +20,19 @@ This file includes all URLs that were used during the development of this codeba
 | How To Make a Web Application Using Flask in Python 3 | https://www.digitalocean.com/community/tutorials/how-to-make-a-web-application-using-flask-in-python-3 |
 | Python .gitignore file                                | https://raw.githubusercontent.com/github/gitignore/main/Python.gitignore                               |
 
+### Web Site Development
+
+These URLs are applicable for the following files as I am not the original author:
+
+*   `static/css/index.css`
+*   `static/js/index.js`
+*   `templates/index.html`
+
+| Title                                             | URL                                             |
+| ------------------------------------------------- | ----------------------------------------------- |
+| 99 Free HTML Templates You Can Download Right Now | https://html.com/resources/free-html-templates/ |
+| CodePen Home Parallax Template [CSS/JS]           | https://codepen.io/uplusion23/pen/ByVzKm        |
+
 ### Shields / Code Badges
 
 | Title      | URL                 |
