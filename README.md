@@ -23,6 +23,20 @@ sudo apt install python3-flask -y
 sudo pip3 install -r requirements.txt
 ```
 
+## Running Unit Tests
+
+To run all unit tests, run the following command:
+
+```bash
+python3.10 -m pytest tests/
+```
+
+If you want to print the tests standard output to the screen, run the following command:
+
+```bash
+python3.10 -m pytest -s tests/
+```
+
 ## Running the Web Application
 
 Run the following command to start the web application:
