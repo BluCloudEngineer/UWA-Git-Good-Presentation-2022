@@ -17,9 +17,14 @@ This file includes all URLs that were used during the development of this codeba
 
 | Title                                                 | URL                                                                                                    |
 | ----------------------------------------------------- | ------------------------------------------------------------------------------------------------------ |
+| Convert bytes to a string                             | https://stackoverflow.com/questions/606191/convert-bytes-to-a-string                                   |
+| flask_user_management_example                         | https://gitlab.com/patkennedy79/flask_user_management_example                                          |
 | How To Make a Web Application Using Flask in Python 3 | https://www.digitalocean.com/community/tutorials/how-to-make-a-web-application-using-flask-in-python-3 |
 | How To Process Incoming Request Data in Flask         | https://www.digitalocean.com/community/tutorials/processing-incoming-request-data-in-flask             |
+| How to set request args with Flask test_client?       | https://stackoverflow.com/questions/38747784/how-to-set-request-args-with-flask-test-client            |
 | Python .gitignore file                                | https://raw.githubusercontent.com/github/gitignore/main/Python.gitignore                               |
+| Testing Flask Applications                            | https://flask.palletsprojects.com/en/2.2.x/testing/                                                    |
+| Testing Flask framework with Pytest                   | https://circleci.com/blog/testing-flask-framework-with-pytest/                                         |
 
 ### Web Site Development
 
