@@ -1,2 +1,4 @@
 #!/bin/bash
-pip3 install -r ../../requirements.txt
+pwd
+ls
+#pip3 install -r ../../requirements.txt
