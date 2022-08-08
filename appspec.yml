@@ -7,24 +7,10 @@ version: 0.0
 
 os: "linux"
 
-files:
-  - source: "pipeline/scripts/"
-    destination: "/tmp/"
-  - source: "static/"
-    destination: "/webapp"
-  - source: "templates/"
-    destination: "/webapp"
-  - source: "app.py"
-    destination: "/webapp"
-  - source: "LICENSE"
-    destination: "/webapp"
-  - source: "requirements.txt"
-    destination: "/tmp/"
-
 hooks:
   #ApplicationStop:
   BeforeInstall:
-    - location: "/tmp/install_dependencies.sh"
+    - location: "pipeline/scripts/install_dependencies.sh"
       timeout: 300
       runas: root
 

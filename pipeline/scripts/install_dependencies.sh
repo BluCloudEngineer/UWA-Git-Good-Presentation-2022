@@ -1,2 +1,2 @@
 #!/bin/bash
-whoami
+pip3 install -r ../../requirements.txt
