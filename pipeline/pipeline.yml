@@ -7,6 +7,19 @@ Parameters:
     Description: "The name of the project deployed on AWS"
     Type: "String"
 
+  PipelineAmazonS3Bucket:
+    AllowedPattern: ".+"
+    ConstraintDescription: "You must enter the name of the Amazon S3 Bucket used by AWS CodePipeline"
+    Description: "The name of the Amazon S3 Bucket used by AWS CodePipeline"
+    Type: "String"
+
+  GitHubConnectionArn:
+    AllowedPattern: ".+"
+    ConstraintDescription: "You must enter the ARN of the GitHub to AWS Connection"
+    Description: "The ARN of the GitHub to AWS Connection"
+    Type: "String"
+
+
 Resources:
   PipelineRole:
     Type: AWS::IAM::Role
@@ -172,6 +185,108 @@ Resources:
                   - "appconfig:GetDeployment"
                 Resource: "*"
           PolicyName: "AWS-AppConfig-Access"
+      Tags:
+        - Key: "Project"
+          Value: !Ref ProjectName
+
+  CodeBuildRole:
+    Type: AWS::IAM::Role
+    Properties:
+      AssumeRolePolicyDocument:
+        Version: "2012-10-17"
+        Statement:
+          - Effect: "Allow"
+            Principal:
+              Service: "codebuild.amazonaws.com"
+            Action: "sts:AssumeRole"
+      Description: "IAM role to run unit tests"
+      ManagedPolicyArns:
+        - "arn:aws:iam::aws:policy/service-role/AWSLambdaBasicExecutionRole"
+      Tags:
+        - Key: "Project"
+          Value: !Ref ProjectName
+
+  Pipeline:
+    Type: AWS::CodePipeline::Pipeline
+    Properties:
+      ArtifactStore:
+        Location: !Ref PipelineAmazonS3Bucket
+        Type: "S3"
+      RestartExecutionOnUpdate: true
+      RoleArn: !Sub "${PipelineRole.Arn}"
+      Stages:
+        - Actions:
+            - ActionTypeId:
+                Category: "Source"
+                Owner: "AWS"
+                Provider: "CodeStarSourceConnection"
+                Version: 1
+              Configuration:
+                ConnectionArn: !Ref GitHubConnectionArn
+                FullRepositoryId: "BluCloudEngineer/UWA-Git-Good-Presentation"
+                BranchName: "feature/aws-pipeline" # Revert to main later
+                OutputArtifactFormat: "CODE_ZIP"
+                DetectChanges: true
+              Name: "Source"
+              Namespace: "SourceSpace"
+              OutputArtifacts:
+                - Name: "SourceArtifacts"
+              Region: !Sub "${AWS::Region}"
+              RunOrder: 1
+          Name: "Source"
+        - Actions:
+            - ActionTypeId:
+                Category: "Test"
+                Owner: "AWS"
+                Provider: "CodeBuild"
+                Version: 1
+              Configuration:
+                ProjectName: !Ref CodeBuildProject
+              InputArtifacts:
+                - Name: "SourceArtifacts"
+              Name: "Test"
+              Namespace: "TestSpace"
+              OutputArtifacts:
+                - Name: "TestArtifacts"
+              Region: !Sub "${AWS::Region}"
+              RunOrder: 1
+          Name: "Test"
+      Tags:
+        - Key: "Project"
+          Value: !Ref ProjectName
+
+  CodeBuildProject:
+    Type: AWS::CodeBuild::Project
+    Properties:
+      Artifacts:
+        Type: "CODEPIPELINE"
+      Description: "Run unit tests for the sample Python Flask web application"
+      Environment:
+        ComputeType: "BUILD_GENERAL1_SMALL"
+        Image: "aws/codebuild/standard:6.0" # Ubuntu 22.04
+        ImagePullCredentialsType: "CODEBUILD"
+        PrivilegedMode: false
+        Type: "LINUX_CONTAINER"
+      LogsConfig:
+        CloudWatchLogs:
+          GroupName: !Ref CodeBuildProjectLogGroup
+          Status: "ENABLED"
+      QueuedTimeoutInMinutes: 480 # 8 hours
+      ServiceRole: !Sub "${CodeBuildRole.Arn}"
+      Source:
+        BuildSpec: "buildspec.yml"
+        InsecureSsl: false
+        Type: "CODEPIPELINE"
+      Tags:
+        - Key: "Project"
+          Value: !Ref ProjectName
+      TimeoutInMinutes: 480 # 8 hours
+      Visibility: "PRIVATE"
+
+  CodeBuildProjectLogGroup:
+    Type: AWS::Logs::LogGroup
+    Properties:
+      RetentionInDays: 30
       Tags:
         - Key: "Project"
           Value: !Ref ProjectName
