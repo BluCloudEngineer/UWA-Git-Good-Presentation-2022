@@ -8,30 +8,36 @@ This file includes all URLs that were used during the development of this codeba
 
 ### Amazon Web Services
 
-| Title                                           | URL                                                                                                                             |
-| ----------------------------------------------- | ------------------------------------------------------------------------------------------------------------------------------- |
-| Amazon Web Services                             | https://aws.amazon.com/                                                                                                         |
-| AWS Free Tier                                   | https://aws.amazon.com/free/                                                                                                    |
-| AWS CloudFormation                              | https://aws.amazon.com/cloudformation/                                                                                          |
-| Amazon EC2                                      | https://aws.amazon.com/ec2/                                                                                                     |
-| AWS CodePipeline                                | https://aws.amazon.com/codepipeline/                                                                                            |
-| AWS CodeBuild                                   | https://aws.amazon.com/codebuild/                                                                                               |
-| AWS CodeDeploy                                  | https://aws.amazon.com/codedeploy/                                                                                              |
-| AWS CloudFormation Template anatomy             | https://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/template-anatomy.html                                            |
-| AWS CloudFormation Parameters                   | https://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/parameters-section-structure.html                                |
-| AWS CloudFormation Outputs                      | https://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/outputs-section-structure.html                                   |
-| AWS::IAM::Role                                  | https://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/aws-resource-iam-role.html                                       |
-| AWS::IAM::InstanceProfile                       | https://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/aws-resource-iam-instanceprofile.html                            |
-| AWS::CodePipeline::Pipeline                     | https://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/aws-resource-codepipeline-pipeline.html                          |
-| AWS::CodeBuild::Project                         | https://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/aws-resource-codebuild-project.html                              |
-| AWS::EC2::Instance                              | https://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/aws-properties-ec2-instance.html#cfn-ec2-instance-additionalinfo |
-| AWS::EC2::SecurityGroup                         | https://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/aws-properties-ec2-security-group.html                           |
-| AWS::Logs::LogGroup                             | https://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/aws-resource-logs-loggroup.html                                  |
-| General template snippets                       | https://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/quickref-general.html                                            |
-| GitHub connections                              | https://docs.aws.amazon.com/codepipeline/latest/userguide/connections-github.html                                               |
-| Create an EC2 instance and install a web server | https://docs.aws.amazon.com/AmazonRDS/latest/UserGuide/CHAP_Tutorials.WebServerDB.CreateWebServer.html                          |
-| Docker images provided by CodeBuild             | https://docs.aws.amazon.com/codebuild/latest/userguide/build-env-ref-available.html                                             |
-| Build specification reference for CodeBuild     | https://docs.aws.amazon.com/codebuild/latest/userguide/build-spec-ref.html                                                      |
+| Title                                                 | URL                                                                                                                             |
+| ----------------------------------------------------- | ------------------------------------------------------------------------------------------------------------------------------- |
+| Amazon Web Services                                   | https://aws.amazon.com/                                                                                                         |
+| AWS Free Tier                                         | https://aws.amazon.com/free/                                                                                                    |
+| AWS CloudFormation                                    | https://aws.amazon.com/cloudformation/                                                                                          |
+| Amazon EC2                                            | https://aws.amazon.com/ec2/                                                                                                     |
+| AWS CodePipeline                                      | https://aws.amazon.com/codepipeline/                                                                                            |
+| AWS CodeBuild                                         | https://aws.amazon.com/codebuild/                                                                                               |
+| AWS CodeDeploy                                        | https://aws.amazon.com/codedeploy/                                                                                              |
+| AWS CloudFormation Template anatomy                   | https://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/template-anatomy.html                                            |
+| AWS CloudFormation Parameters                         | https://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/parameters-section-structure.html                                |
+| AWS CloudFormation Outputs                            | https://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/outputs-section-structure.html                                   |
+| AWS::IAM::Role                                        | https://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/aws-resource-iam-role.html                                       |
+| AWS::IAM::InstanceProfile                             | https://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/aws-resource-iam-instanceprofile.html                            |
+| AWS::CodePipeline::Pipeline                           | https://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/aws-resource-codepipeline-pipeline.html                          |
+| AWS::CodeBuild::Project                               | https://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/aws-resource-codebuild-project.html                              |
+| AWS::EC2::Instance                                    | https://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/aws-properties-ec2-instance.html#cfn-ec2-instance-additionalinfo |
+| AWS::EC2::SecurityGroup                               | https://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/aws-properties-ec2-security-group.html                           |
+| AWS::Logs::LogGroup                                   | https://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/aws-resource-logs-loggroup.html                                  |
+| AWS::CodeDeploy::Application                          | https://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/aws-resource-codedeploy-application.html                         |
+| AWS::CodeDeploy::DeploymentGroup                      | https://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/aws-resource-codedeploy-deploymentgroup.html                     |
+| General template snippets                             | https://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/quickref-general.html                                            |
+| GitHub connections                                    | https://docs.aws.amazon.com/codepipeline/latest/userguide/connections-github.html                                               |
+| Create an EC2 instance and install a web server       | https://docs.aws.amazon.com/AmazonRDS/latest/UserGuide/CHAP_Tutorials.WebServerDB.CreateWebServer.html                          |
+| Docker images provided by CodeBuild                   | https://docs.aws.amazon.com/codebuild/latest/userguide/build-env-ref-available.html                                             |
+| Build specification reference for CodeBuild           | https://docs.aws.amazon.com/codebuild/latest/userguide/build-spec-ref.html                                                      |
+| AppSpec File structure                                | https://docs.aws.amazon.com/codedeploy/latest/userguide/reference-appspec-file-structure.html                                   |
+| CodeDeploy AppSpec File reference                     | https://docs.aws.amazon.com/codedeploy/latest/userguide/reference-appspec-file.html#appspec-reference-server                    |
+| Install the CodeDeploy agent for Amazon Linux or RHEL | https://docs.aws.amazon.com/codedeploy/latest/userguide/codedeploy-agent-operations-install-linux.html                          |
+| CodeDeploy resource kit reference                     | https://docs.aws.amazon.com/codedeploy/latest/userguide/resource-kit.html#resource-kit-bucket-names                             |
 
 ### Docker
 
