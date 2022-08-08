@@ -1,0 +1,27 @@
+AWSTemplateFormatVersion: "2010-09-09"
+Description: "Deploys the pipeline to run unit tests and deploy the sample Python Flask web application to AWS"
+
+Parameters:
+  ProjectName:
+    Default: "UWA Git Good Presentation"
+    Description: "The name of the project deployed on AWS"
+    Type: "String"
+
+Resources:
+  PipelineRole:
+    Type: AWS::IAM::Role
+    Properties:
+      AssumeRolePolicyDocument:
+        Version: "2012-10-17"
+        Statement:
+          - Effect: "Allow"
+            Principal:
+              Service: "codepipeline.amazonaws.com"
+            Action: "sts:AssumeRole"
+      Description: "Default AWS CodePipeline IAM Role"
+      #Policies: # COME BACK TO
+      Tags:
+        - Key: "Project"
+          Value: !Ref ProjectName
+
+#Outputs:
