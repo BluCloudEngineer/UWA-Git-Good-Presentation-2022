@@ -91,9 +91,6 @@ Resources:
         Fn::Base64: !Sub |
           #!/bin/bash
           yum update -y
-          yum install httpd -y
-          systemctl start httpd
-          systemctl enable httpd
 
   WebServerSecurityGroup:
     Type: AWS::EC2::SecurityGroup
