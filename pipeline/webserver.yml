@@ -4,6 +4,7 @@ Description: "Deploys an Amazon EC2 web server instance to host the sample Pytho
 Parameters:
   ProjectName:
     AllowedPattern: ".+"
+    ConstraintDescription: "You must provide a name for the project"
     Description: "The name of the project deployed on AWS"
     Type: "String"
 
