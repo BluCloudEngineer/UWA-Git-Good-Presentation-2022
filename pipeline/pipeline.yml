@@ -207,6 +207,23 @@ Resources:
         - Key: "Project"
           Value: !Ref ProjectName
 
+  CodeDeployRole:
+    Type: AWS::IAM::Role
+    Properties:
+      AssumeRolePolicyDocument:
+        Version: "2012-10-17"
+        Statement:
+          - Effect: "Allow"
+            Principal:
+              Service: "codedeploy.amazonaws.com"
+            Action: "sts:AssumeRole"
+      Description: "IAM role to push code revisions to Amazon EC2 Instances"
+      ManagedPolicyArns:
+        - "arn:aws:iam::aws:policy/service-role/AWSCodeDeployRole"
+      Tags:
+        - Key: "Project"
+          Value: !Ref ProjectName
+
   CloudFormationRole:
     Type: AWS::IAM::Role
     Properties:
@@ -374,6 +391,28 @@ Resources:
     Type: AWS::CodeDeploy::Application
     Properties:
       ComputePlatform: "Server"
+      Tags:
+        - Key: "Project"
+          Value: !Ref ProjectName
+
+  CodeDeployDeploymentGroup:
+    Type: AWS::CodeDeploy::DeploymentGroup
+    Properties:
+      ApplicationName: !Ref CodeDeployApplication
+      AutoRollbackConfiguration:
+        Enabled: true
+        Events:
+          - "DEPLOYMENT_FAILURE"
+          - "DEPLOYMENT_STOP_ON_REQUEST"
+      DeploymentConfigName: "CodeDeployDefault.AllAtOnce"
+      Ec2TagFilters:
+        - Key: "Project"
+          Type: "KEY_AND_VALUE"
+          Value: !Ref ProjectName
+        - Key: "Client"
+          Type: "KEY_AND_VALUE"
+          Value: "UWA"
+      ServiceRoleArn: !Sub "${CodeDeployRole.Arn}"
       Tags:
         - Key: "Project"
           Value: !Ref ProjectName
