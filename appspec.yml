@@ -8,11 +8,17 @@ version: 0.0
 os: "linux"
 
 hooks:
-  #ApplicationStop:
+  ApplicationStop:
+    - location: "pipeline/scripts/stop_service.sh"
+      timeout: 300
+      runas: root
 
   Install:
     - location: "pipeline/scripts/install_dependencies.sh"
       timeout: 300
       runas: root
 
-  #ApplicationStart:
+  ApplicationStart:
+    - location: "pipeline/scripts/start_service.sh"
+      timeout: 300
+      runas: root
