@@ -94,6 +94,10 @@ Resources:
         Fn::Base64: !Sub |
           #!/bin/bash
           yum update -y
+          yum install ruby wget -y
+          wget https://aws-codedeploy-${AWS::Region}.s3.${AWS::Region}.amazonaws.com/latest/install
+          chmod 700 install
+          ./install auto
 
   WebServerSecurityGroup:
     Type: AWS::EC2::SecurityGroup
