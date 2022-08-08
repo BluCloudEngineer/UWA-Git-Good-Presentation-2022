@@ -1,6 +1,7 @@
 import pytest
 from app import app
 
+
 def test_accept_get_request():
     """
     Make a HTTP GET request to the main webpage, it should
@@ -13,6 +14,7 @@ def test_accept_get_request():
     # Run assertions
     assert response.status_code == 200
     assert response.content_type == "text/html; charset=utf-8"
+
 
 def test_reject_post_request():
     """
