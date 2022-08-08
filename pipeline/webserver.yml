@@ -79,6 +79,7 @@ Resources:
       ImageId: !Ref Ec2ImageId
       InstanceInitiatedShutdownBehavior: "stop"
       InstanceType: !Ref Ec2InstanceSize
+      KeyName: "UWA"
       SecurityGroups:
         - !Ref WebServerSecurityGroup
       Tags:
