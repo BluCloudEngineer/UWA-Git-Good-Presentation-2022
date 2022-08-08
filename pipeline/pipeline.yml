@@ -370,4 +370,12 @@ Resources:
         - Key: "Project"
           Value: !Ref ProjectName
 
+  CodeDeployApplication:
+    Type: AWS::CodeDeploy::Application
+    Properties:
+      ComputePlatform: "Server"
+      Tags:
+        - Key: "Project"
+          Value: !Ref ProjectName
+
 #Outputs:
