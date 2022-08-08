@@ -3,7 +3,6 @@ version: 0.2
 phases:
   install:
     commands:
-      #- apt install python3-flask -y
       - pip3 install -r requirements.txt
 
   build:
