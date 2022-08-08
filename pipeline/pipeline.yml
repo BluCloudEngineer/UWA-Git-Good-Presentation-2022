@@ -19,7 +19,159 @@ Resources:
               Service: "codepipeline.amazonaws.com"
             Action: "sts:AssumeRole"
       Description: "Default AWS CodePipeline IAM Role"
-      #Policies: # COME BACK TO
+      Policies:
+        - PolicyDocument:
+            Version: "2012-10-17"
+            Statement:
+              - Effect: "Allow"
+                Action: "iam:PassRole"
+                Resource: "*"
+                Condition:
+                  StringEqualsIfExists:
+                    iam:PassedToService:
+                      - "cloudformation.amazonaws.com"
+                      - "elasticbeanstalk.amazonaws.com"
+                      - "ec2.amazonaws.com"
+                      - "ecs-tasks.amazonaws.com"
+          PolicyName: "IAM-Access"
+        - PolicyDocument:
+            Version: "2012-10-17"
+            Statement:
+              - Effect: "Allow"
+                Action:
+                  - "codecommit:CancelUploadArchive"
+                  - "codecommit:GetBranch"
+                  - "codecommit:GetCommit"
+                  - "codecommit:GetRepository"
+                  - "codecommit:GetUploadArchiveStatus"
+                  - "codecommit:UploadArchive"
+                Resource: "*"
+          PolicyName: "AWS-CodeCommit-Access"
+        - PolicyDocument:
+            Version: "2012-10-17"
+            Statement:
+              - Effect: "Allow"
+                Action:
+                  - "codedeploy:CreateDeployment"
+                  - "codedeploy:GetApplication"
+                  - "codedeploy:GetApplicationRevision"
+                  - "codedeploy:GetDeployment"
+                  - "codedeploy:GetDeploymentConfig"
+                  - "codedeploy:RegisterApplicationRevision"
+                Resource: "*"
+          PolicyName: "AWS-CodeDeploy-Access"
+        - PolicyDocument:
+            Version: "2012-10-17"
+            Statement:
+              - Effect: "Allow"
+                Action: "codestar-connections:UseConnection"
+                Resource: "*"
+          PolicyName: "AWS-CodeStar-Access"
+        - PolicyDocument:
+            Version: "2012-10-17"
+            Statement:
+              - Effect: "Allow"
+                Action:
+                  - "autoscaling:*"
+                  - "cloudformation:*"
+                  - "cloudwatch:*"
+                  - "ec2:*"
+                  - "ecs:*"
+                  - "elasticbeanstalk:*"
+                  - "elasticloadbalancing:*"
+                  - "rds:*"
+                  - "s3:*"
+                  - "sns:*"
+                  - "sqs:*"
+                Resource: "*"
+          PolicyName: "Select-Full-Access"
+        - PolicyDocument:
+            Version: "2012-10-17"
+            Statement:
+              - Effect: "Allow"
+                Action:
+                  - "lambda:InvokeFunction"
+                  - "lambda:ListFunctions"
+                Resource: "*"
+          PolicyName: "AWS-Lambda-Access"
+        - PolicyDocument:
+            Version: "2012-10-17"
+            Statement:
+              - Effect: "Allow"
+                Action:
+                  - "opsworks:CreateDeployment"
+                  - "opsworks:DescribeApps"
+                  - "opsworks:DescribeCommands"
+                  - "opsworks:DescribeDeployments"
+                  - "opsworks:DescribeInstances"
+                  - "opsworks:DescribeStacks"
+                  - "opsworks:UpdateApp"
+                  - "opsworks:UpdateStack"
+                Resource: "*"
+          PolicyName: "AWS-OpsWorks-Access"
+        - PolicyDocument:
+            Version: "2012-10-17"
+            Statement:
+              - Effect: "Allow"
+                Action:
+                  - "codebuild:BatchGetBuilds"
+                  - "codebuild:StartBuild"
+                  - "codebuild:BatchGetBuildBatches"
+                  - "codebuild:StartBuildBatch"
+                Resource: "*"
+          PolicyName: "AWS-CodeBuild-Access"
+        - PolicyDocument:
+            Version: "2012-10-17"
+            Statement:
+              - Effect: "Allow"
+                Action:
+                  - "devicefarm:ListProjects"
+                  - "devicefarm:ListDevicePools"
+                  - "devicefarm:GetRun"
+                  - "devicefarm:GetUpload"
+                  - "devicefarm:CreateUpload"
+                  - "devicefarm:ScheduleRun"
+                Resource: "*"
+          PolicyName: "AWS-Device-Farm-Access"
+        - PolicyDocument:
+            Version: "2012-10-17"
+            Statement:
+              - Effect: "Allow"
+                Action:
+                  - "servicecatalog:ListProvisioningArtifacts"
+                  - "servicecatalog:CreateProvisioningArtifact"
+                  - "servicecatalog:DescribeProvisioningArtifact"
+                  - "servicecatalog:DeleteProvisioningArtifact"
+                  - "servicecatalog:UpdateProduct"
+                Resource: "*"
+          PolicyName: "AWS-Service-Catalog-Access"
+        - PolicyDocument:
+            Version: "2012-10-17"
+            Statement:
+              - Effect: "Allow"
+                Action: "ecr:DescribeImages"
+                Resource: "*"
+          PolicyName: "Amazon-ECR-Access"
+        - PolicyDocument:
+            Version: "2012-10-17"
+            Statement:
+              - Effect: "Allow"
+                Action:
+                  - "states:DescribeExecution"
+                  - "states:DescribeStateMachine"
+                  - "states:StartExecution"
+                Resource: "*"
+          PolicyName: "AWS-Step-Functions-Access"
+        - PolicyDocument:
+            Version: "2012-10-17"
+            Statement:
+              - Effect: "Allow"
+                Action:
+                  - "appconfig:StartDeployment"
+                  - "appconfig:StopDeployment"
+                  - "appconfig:GetDeployment"
+                Resource: "*"
+          PolicyName: "AWS-AppConfig-Access"
       Tags:
         - Key: "Project"
           Value: !Ref ProjectName
