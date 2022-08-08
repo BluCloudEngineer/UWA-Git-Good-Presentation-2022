@@ -9,9 +9,10 @@ os: "linux"
 
 hooks:
   #ApplicationStop:
-  BeforeInstall:
+
+  Install:
     - location: "pipeline/scripts/install_dependencies.sh"
       timeout: 300
       runas: root
 
-  #Install
+  #ApplicationStart:
