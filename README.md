@@ -20,6 +20,16 @@ Demonstration files to build and deploy a sample Python Flask web application to
 *   You will need a [Docker Hub](https://hub.docker.com/) account.
 *   You will need to create a Docker Access Token and add it as a secret to your GitHub repository. Please see the reference `Build and push Docker images` in the `REFERENCES.md` file.
 
+## Automated GitHub Actions
+
+Please see the table below for an overview of the implemented GitHub actions, these files can be found the following directory: `.github/workflows/`
+
+| GitHub Action File Name | Description                                                                                                                          | Affected Branches | Event Type                |
+| ----------------------- | ------------------------------------------------------------------------------------------------------------------------------------ | ----------------- | ------------------------- |
+| push_to_docker_hub.yml  | Runs unit tests, build and pushes the Docker container to Docker Hub                                                                 | main              | Push to single branch     |
+| python_linting.yml      | Run Python PEP 8 formatting over the codebase and creates an new pull request if the linting fails. An example can be seen here: #17 | main and develop  | Push to multiple branches |
+| python_unit_tests.yml   | Runs pytest unit tests against the codebase                                                                                          | main and develop  | New Pull Requests         |
+
 ## Installation
 
 Run the following commands to download and install the required Python Dependencies:
