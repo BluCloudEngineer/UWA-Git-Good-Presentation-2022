@@ -201,6 +201,7 @@ Resources:
             Action: "sts:AssumeRole"
       Description: "IAM role to run unit tests"
       ManagedPolicyArns:
+        - "arn:aws:iam::aws:policy/AmazonS3ReadOnlyAccess"
         - "arn:aws:iam::aws:policy/service-role/AWSLambdaBasicExecutionRole"
       Tags:
         - Key: "Project"
