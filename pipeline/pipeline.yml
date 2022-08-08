@@ -207,6 +207,22 @@ Resources:
         - Key: "Project"
           Value: !Ref ProjectName
 
+  CloudFormationRole:
+    Type: AWS::IAM::Role
+    Properties:
+      AssumeRolePolicyDocument:
+        Version: "2012-10-17"
+        Statement:
+          - Effect: "Allow"
+            Principal:
+              Service: "cloudformation.amazonaws.com"
+            Action: "sts:AssumeRole"
+      Description: "IAM role to deploy AWS CloudFormation stacks"
+      #Policies: # COME BACK TO
+      Tags:
+        - Key: "Project"
+          Value: !Ref ProjectName
+
   Pipeline:
     Type: AWS::CodePipeline::Pipeline
     Properties:
@@ -252,6 +268,32 @@ Resources:
               Region: !Sub "${AWS::Region}"
               RunOrder: 1
           Name: "Test"
+        - Actions:
+            - ActionTypeId:
+                Category: "Deploy"
+                Owner: "AWS"
+                Provider: "CloudFormation"
+                Version: 1
+              Configuration:
+                ActionMode: "CREATE_UPDATE"
+                StackName: "UWA-Get-Good-Presentation-Webserver"
+                Capabilities: "CAPABILITY_IAM"
+                RoleArn: !Sub "${CloudFormationRole.Arn}"
+                TemplatePath: "SourceArtifacts::pipeline/webserver.yml"
+                OutputFileName: "UWA-Get-Good-Presentation-Webserver-Output.json"
+                ParameterOverrides: !Sub |
+                  {
+                    "ProjectName": "${ProjectName}"
+                  }
+              InputArtifacts:
+                - Name: "SourceArtifacts"
+              Name: "DeployWebServer"
+              Namespace: "DeployWebServerSpace"
+              OutputArtifacts:
+                - Name: "DeployWebServerArtifacts"
+              Region: !Sub "${AWS::Region}"
+              RunOrder: 1
+          Name: "DeployBackend"
       Tags:
         - Key: "Project"
           Value: !Ref ProjectName
