@@ -218,7 +218,43 @@ Resources:
               Service: "cloudformation.amazonaws.com"
             Action: "sts:AssumeRole"
       Description: "IAM role to deploy AWS CloudFormation stacks"
-      #Policies: # COME BACK TO
+      Policies:
+        - PolicyDocument:
+            Version: "2012-10-17"
+            Statement:
+              - Effect: "Allow"
+                Action:
+                  - "ec2:RevokeSecurityGroupIngress"
+                  - "ec2:AuthorizeSecurityGroupIngress"
+                  - "ec2:DescribeInstances"
+                  - "ec2:TerminateInstances"
+                  - "ec2:DeleteTags"
+                  - "ec2:DescribeTags"
+                  - "ec2:CreateSecurityGroup"
+                  - "ec2:CreateTags"
+                  - "ec2:DeleteSecurityGroup"
+                  - "ec2:RunInstances"
+                  - "ec2:DescribeSecurityGroups"
+                Resource: "*"
+          PolicyName: "EC2-Access"
+        - PolicyDocument:
+            Version: "2012-10-17"
+            Statement:
+              - Effect: "Allow"
+                Action:
+                  - "iam:CreateInstanceProfile"
+                  - "iam:DeleteInstanceProfile"
+                  - "iam:PassRole"
+                  - "iam:DetachRolePolicy"
+                  - "iam:UntagRole"
+                  - "iam:TagRole"
+                  - "iam:RemoveRoleFromInstanceProfile"
+                  - "iam:CreateRole"
+                  - "iam:DeleteRole"
+                  - "iam:AttachRolePolicy"
+                  - "iam:AddRoleToInstanceProfile"
+                Resource: "*"
+          PolicyName: "IAM-Access"
       Tags:
         - Key: "Project"
           Value: !Ref ProjectName
@@ -276,11 +312,11 @@ Resources:
                 Version: 1
               Configuration:
                 ActionMode: "CREATE_UPDATE"
-                StackName: "UWA-Get-Good-Presentation-Webserver"
+                StackName: "UWA-Git-Good-Presentation-Webserver"
                 Capabilities: "CAPABILITY_IAM"
                 RoleArn: !Sub "${CloudFormationRole.Arn}"
                 TemplatePath: "SourceArtifacts::pipeline/webserver.yml"
-                OutputFileName: "UWA-Get-Good-Presentation-Webserver-Output.json"
+                OutputFileName: "UWA-Git-Good-Presentation-Webserver-Output.json"
                 ParameterOverrides: !Sub |
                   {
                     "ProjectName": "${ProjectName}"
