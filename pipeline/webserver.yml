@@ -87,4 +87,15 @@ Resources:
         - Key: "Project"
           Value: !Ref ProjectName
 
-#Outputs:
+Outputs:
+  WebServerId:
+    Description: "The Instance ID of the Amazon EC2 webserver"
+    Value: !Ref WebServerInstance
+
+  WebServerPublicIpAddress:
+    Description: "The public IPv4 address of the Amazon EC2 webserver"
+    Value: !Sub "${WebServerInstance.PublicIp}"
+
+  WebServerPublicDnsName:
+    Description: "The public DNS name of the the Amazon EC2 webserver"
+    Value: !Sub "${WebServerInstance.PublicDnsName}"
