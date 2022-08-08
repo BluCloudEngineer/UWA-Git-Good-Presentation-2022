@@ -347,6 +347,22 @@ Resources:
               Region: !Sub "${AWS::Region}"
               RunOrder: 1
           Name: "DeployBackend"
+        - Actions:
+            - ActionTypeId:
+                Category: "Deploy"
+                Owner: "AWS"
+                Provider: "CodeDeploy"
+                Version: 1
+              Configuration:
+                ApplicationName: !Ref CodeDeployApplication
+                DeploymentGroupName: !Ref CodeDeployDeploymentGroup
+              InputArtifacts:
+                - Name: "SourceArtifacts"
+              Name: "DeployPythonCode"
+              Namespace: "DeployPythonCodeSpace"
+              Region: !Sub "${AWS::Region}"
+              RunOrder: 1
+          Name: "DeployCode"
       Tags:
         - Key: "Project"
           Value: !Ref ProjectName
