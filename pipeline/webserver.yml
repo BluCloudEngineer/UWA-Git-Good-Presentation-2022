@@ -99,9 +99,9 @@ Resources:
       SecurityGroupIngress:
         - CidrIp: "0.0.0.0/0"
           Description: "HTTP access"
-          FromPort: 80
+          FromPort: 5000
           IpProtocol: "tcp"
-          ToPort: 80
+          ToPort: 5000
       Tags:
         - Key: "Name"
           Value: "EC2 Webserver Security Group"
@@ -113,10 +113,10 @@ Outputs:
     Description: "The Instance ID of the Amazon EC2 webserver"
     Value: !Ref WebServerInstance
 
-  WebServerPublicIpAddress:
-    Description: "The public IPv4 address of the Amazon EC2 webserver"
-    Value: !Sub "${WebServerInstance.PublicIp}"
+  WebServerPublicIpAddressUrl:
+    Description: "The URL of the Amazon EC2 webserver using the public IPv4 address"
+    Value: !Sub "http://${WebServerInstance.PublicIp}:5000/"
 
-  WebServerPublicDnsName:
-    Description: "The public DNS name of the the Amazon EC2 webserver"
-    Value: !Sub "${WebServerInstance.PublicDnsName}"
+  WebServerPublicDnsNameUrl:
+    Description: "The URL of the Amazon EC2 webserver using the public DNS name"
+    Value: !Sub "http://${WebServerInstance.PublicDnsName}:5000/"
