@@ -1,0 +1,31 @@
+# This file is unique to AWS CodeDeploy projects
+# Please see the following URLs for more information on the syntax:
+# https://docs.aws.amazon.com/codedeploy/latest/userguide/reference-appspec-file-structure.html
+# https://docs.aws.amazon.com/codedeploy/latest/userguide/reference-appspec-file.html#appspec-reference-server
+
+version: 0.0
+
+os: "linux"
+
+files:
+  - source: "pipeline/scripts/"
+    destination: "/tmp/"
+  - source: "static/"
+    destination: "/webapp"
+  - source: "templates/"
+    destination: "/webapp"
+  - source: "app.py"
+    destination: "/webapp"
+  - source: "LICENSE"
+    destination: "/webapp"
+  - source: "requirements.txt"
+    destination: "/tmp/"
+
+hooks:
+  #ApplicationStop:
+  BeforeInstall:
+    - location: "/tmp/install_dependencies.sh"
+      timeout: 300
+      runas: root
+
+  #Install
