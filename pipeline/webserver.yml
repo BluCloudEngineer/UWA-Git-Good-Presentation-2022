@@ -39,6 +39,29 @@ Parameters:
     Type: "String"
 
 Resources:
+  WebServerIamRole:
+    Type: AWS::IAM::Role
+    Properties:
+      AssumeRolePolicyDocument:
+        Version: "2012-10-17"
+        Statement:
+          - Effect: "Allow"
+            Principal:
+              Service: "ec2.amazonaws.com"
+            Action: "sts:AssumeRole"
+      Description: "IAM Role to deploy code revisions to the EC2 Instance"
+      ManagedPolicyArns:
+        - "arn:aws:iam::aws:policy/service-role/AmazonEC2RoleforAWSCodeDeploy"
+      Tags:
+        - Key: "Project"
+          Value: !Ref ProjectName
+
+  WebServerIamInstanceProfile:
+    Type: AWS::IAM::InstanceProfile
+    Properties:
+      Roles:
+        - !Ref WebServerIamRole
+
   WebServerInstance:
     Type: AWS::EC2::Instance
     Properties:
@@ -52,7 +75,7 @@ Resources:
             VolumeType: "gp3"
       DisableApiTermination: false
       EbsOptimized: false
-      #IamInstanceProfile: # COME BACK TO
+      IamInstanceProfile: !Ref WebServerIamInstanceProfile
       ImageId: !Ref Ec2ImageId
       InstanceInitiatedShutdownBehavior: "stop"
       InstanceType: !Ref Ec2InstanceSize
