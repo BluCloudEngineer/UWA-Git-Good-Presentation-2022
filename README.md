@@ -19,6 +19,12 @@ Demonstration files to build and deploy a sample Python Flask web application to
 
 *   You will need a [Docker Hub](https://hub.docker.com/) account.
 *   You will need to create a Docker Access Token and add it as a secret to your GitHub repository. Please see the reference `Build and push Docker images` in the `REFERENCES.md` file.
+*   You will need an [Amazon Web Services](https://aws.amazon.com/) Account.
+*   All AWS resources are used in this repository fall under the [AWS Free Tier](https://aws.amazon.com/free/), however if you do deploy this to your AWS account, you are responsible for any costs incurred.
+*   You already have the default Amazon S3 Bucket used by AWS CodePipeline.
+*   The Amazon EC2 web server will be deployed in the default VPC of your AWS account. If you are deploying this for a production environment, it is recommended to create a new VPC.
+*   All AWS resources are deployed in the Asia Pacific (Sydney) ap-southeast-2 Region.
+*   You will need to have setup the connector between GitHub and AWS. More information can be found [here](https://docs.aws.amazon.com/codepipeline/latest/userguide/connections-github.html).
 
 ## Automated GitHub Actions
 
@@ -29,6 +35,38 @@ Please see the table below for an overview of the implemented GitHub actions, th
 | push_to_docker_hub.yml  | Runs unit tests, build and pushes the Docker container to Docker Hub                                                                 | main              | Push to single branch     |
 | python_linting.yml      | Run Python PEP 8 formatting over the codebase and creates an new pull request if the linting fails. An example can be seen here: #17 | main and develop  | Push to multiple branches |
 | python_unit_tests.yml   | Runs pytest unit tests against the codebase                                                                                          | main and develop  | New Pull Requests         |
+
+## AWS CodePipeline Pipeline
+
+### Overview
+
+A pipeline has been created that runs unit tests of the codebase and deploys the Python Flask web application to an Amazon EC2 instance. The pipeline is executed when changes are made to the `main` branch.
+
+### Deploying the Pipeline
+
+1.  Login to the AWS Management Console.
+
+2.  Change your Region to `ap-southeast-2 (Sydney)` (if you haven't already).
+
+3.  Once logged in, navigate to the `AWS CloudFormation Console`.
+
+4.  Create a new Stack with new resources.
+
+5.  Choose the `Upload a template file` option and upload the following file `pipeline/pipeline.yml`, then press `Next`.
+
+6.  Enter the following for the `Stack name`: UWA-Git-Good-Presentation-Pipeline
+
+7.  Enter the GitHub connector ARN for the `GitHubConnectionArn` parameter.
+
+8.  Enter the name of the Amazon S3 bucket used by AWS CodePipeline for the `PipelineAmazonS3Bucket` parameter.
+
+9.  Press `Next`.
+
+10. Press `Next` again.
+
+11. Scroll down to the bottom of the page and select the `I acknowledge that AWS CloudFormation might create IAM resources` checkbox, then press `Create stack`.
+
+12. Once the pipeline stack has been deployed, it will automatically deploy the Python Flask web application to AWS.
 
 ## Installation
 

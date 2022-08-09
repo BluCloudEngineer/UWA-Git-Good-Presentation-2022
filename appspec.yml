@@ -1,0 +1,31 @@
+# This file is unique to AWS CodeDeploy projects
+# Please see the following URLs for more information on the syntax:
+# https://docs.aws.amazon.com/codedeploy/latest/userguide/reference-appspec-file-structure.html
+# https://docs.aws.amazon.com/codedeploy/latest/userguide/reference-appspec-file.html#appspec-reference-server
+
+version: 0.0
+
+os: "linux"
+
+files:
+  - source: "/"
+    destination: "/tmp/webapp"
+
+hooks:
+  ApplicationStop:
+    - location: "stop_service.sh"
+      timeout: 300
+      runas: root
+    
+  AfterInstall:
+    - location: "install_service.sh"
+      timeout: 300
+      runas: root
+
+  ApplicationStart:
+    - location: "start_service.sh"
+      timeout: 300
+      runas: root
+    - location: "cleanup_service.sh"
+      timeout: 300
+      runas: root
