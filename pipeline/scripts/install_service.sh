@@ -1,2 +1,2 @@
 #!/bin/bash
-docker build -t uwagitgoodwebapp .
+sudo docker build -t uwagitgoodwebapp .
