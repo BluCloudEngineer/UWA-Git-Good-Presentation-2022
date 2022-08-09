@@ -38,12 +38,15 @@ This file includes all URLs that were used during the development of this codeba
 | CodeDeploy AppSpec File reference                     | https://docs.aws.amazon.com/codedeploy/latest/userguide/reference-appspec-file.html#appspec-reference-server |
 | Install the CodeDeploy agent for Amazon Linux or RHEL | https://docs.aws.amazon.com/codedeploy/latest/userguide/codedeploy-agent-operations-install-linux.html       |
 | CodeDeploy resource kit reference                     | https://docs.aws.amazon.com/codedeploy/latest/userguide/resource-kit.html                                    |
+| Install Docker on Amazon Linux 2                      | https://gist.github.com/npearce/6f3c7826c7499587f00957fee62f8ee9                                             |
+| AppSpec 'hooks' section                               | https://docs.aws.amazon.com/codedeploy/latest/userguide/reference-appspec-file-structure-hooks.html          |
 
 ### Docker
 
-| Title      | URL                     |
-| ---------- | ----------------------- |
-| Docker Hub | https://hub.docker.com/ |
+| Title                                 | URL                                                                                |
+| ------------------------------------- | ---------------------------------------------------------------------------------- |
+| Docker Hub                            | https://hub.docker.com/                                                            |
+| Stop and remove all docker containers | https://stackoverflow.com/questions/45357771/stop-and-remove-all-docker-containers |
 
 ### GitHub Actions
 
