@@ -296,7 +296,7 @@ Resources:
               Configuration:
                 ConnectionArn: !Ref GitHubConnectionArn
                 FullRepositoryId: "BluCloudEngineer/UWA-Git-Good-Presentation"
-                BranchName: "feature/aws-pipeline" # Revert to main later
+                BranchName: "main"
                 OutputArtifactFormat: "CODE_ZIP"
                 DetectChanges: true
               Name: "Source"
