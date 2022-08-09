@@ -112,11 +112,6 @@ Resources:
           FromPort: 5000
           IpProtocol: "tcp"
           ToPort: 5000
-        - CidrIp: "0.0.0.0/0"
-          Description: "SSH access"
-          FromPort: 22
-          IpProtocol: "tcp"
-          ToPort: 22
 
       Tags:
         - Key: "Name"
