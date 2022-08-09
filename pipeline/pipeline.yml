@@ -1,0 +1,438 @@
+AWSTemplateFormatVersion: "2010-09-09"
+Description: "Deploys the pipeline to run unit tests and deploy the sample Python Flask web application to AWS"
+
+Parameters:
+  ProjectName:
+    Default: "UWA Git Good Presentation"
+    Description: "The name of the project deployed on AWS"
+    Type: "String"
+
+  PipelineAmazonS3Bucket:
+    AllowedPattern: ".+"
+    ConstraintDescription: "You must enter the name of the Amazon S3 Bucket used by AWS CodePipeline"
+    Description: "The name of the Amazon S3 Bucket used by AWS CodePipeline"
+    Type: "String"
+
+  GitHubConnectionArn:
+    AllowedPattern: ".+"
+    ConstraintDescription: "You must enter the ARN of the GitHub to AWS Connection"
+    Description: "The ARN of the GitHub to AWS Connection"
+    Type: "String"
+
+
+Resources:
+  PipelineRole:
+    Type: AWS::IAM::Role
+    Properties:
+      AssumeRolePolicyDocument:
+        Version: "2012-10-17"
+        Statement:
+          - Effect: "Allow"
+            Principal:
+              Service: "codepipeline.amazonaws.com"
+            Action: "sts:AssumeRole"
+      Description: "Default AWS CodePipeline IAM Role"
+      Policies:
+        - PolicyDocument:
+            Version: "2012-10-17"
+            Statement:
+              - Effect: "Allow"
+                Action: "iam:PassRole"
+                Resource: "*"
+                Condition:
+                  StringEqualsIfExists:
+                    iam:PassedToService:
+                      - "cloudformation.amazonaws.com"
+                      - "elasticbeanstalk.amazonaws.com"
+                      - "ec2.amazonaws.com"
+                      - "ecs-tasks.amazonaws.com"
+          PolicyName: "IAM-Access"
+        - PolicyDocument:
+            Version: "2012-10-17"
+            Statement:
+              - Effect: "Allow"
+                Action:
+                  - "codecommit:CancelUploadArchive"
+                  - "codecommit:GetBranch"
+                  - "codecommit:GetCommit"
+                  - "codecommit:GetRepository"
+                  - "codecommit:GetUploadArchiveStatus"
+                  - "codecommit:UploadArchive"
+                Resource: "*"
+          PolicyName: "AWS-CodeCommit-Access"
+        - PolicyDocument:
+            Version: "2012-10-17"
+            Statement:
+              - Effect: "Allow"
+                Action:
+                  - "codedeploy:CreateDeployment"
+                  - "codedeploy:GetApplication"
+                  - "codedeploy:GetApplicationRevision"
+                  - "codedeploy:GetDeployment"
+                  - "codedeploy:GetDeploymentConfig"
+                  - "codedeploy:RegisterApplicationRevision"
+                Resource: "*"
+          PolicyName: "AWS-CodeDeploy-Access"
+        - PolicyDocument:
+            Version: "2012-10-17"
+            Statement:
+              - Effect: "Allow"
+                Action: "codestar-connections:UseConnection"
+                Resource: "*"
+          PolicyName: "AWS-CodeStar-Access"
+        - PolicyDocument:
+            Version: "2012-10-17"
+            Statement:
+              - Effect: "Allow"
+                Action:
+                  - "autoscaling:*"
+                  - "cloudformation:*"
+                  - "cloudwatch:*"
+                  - "ec2:*"
+                  - "ecs:*"
+                  - "elasticbeanstalk:*"
+                  - "elasticloadbalancing:*"
+                  - "rds:*"
+                  - "s3:*"
+                  - "sns:*"
+                  - "sqs:*"
+                Resource: "*"
+          PolicyName: "Select-Full-Access"
+        - PolicyDocument:
+            Version: "2012-10-17"
+            Statement:
+              - Effect: "Allow"
+                Action:
+                  - "lambda:InvokeFunction"
+                  - "lambda:ListFunctions"
+                Resource: "*"
+          PolicyName: "AWS-Lambda-Access"
+        - PolicyDocument:
+            Version: "2012-10-17"
+            Statement:
+              - Effect: "Allow"
+                Action:
+                  - "opsworks:CreateDeployment"
+                  - "opsworks:DescribeApps"
+                  - "opsworks:DescribeCommands"
+                  - "opsworks:DescribeDeployments"
+                  - "opsworks:DescribeInstances"
+                  - "opsworks:DescribeStacks"
+                  - "opsworks:UpdateApp"
+                  - "opsworks:UpdateStack"
+                Resource: "*"
+          PolicyName: "AWS-OpsWorks-Access"
+        - PolicyDocument:
+            Version: "2012-10-17"
+            Statement:
+              - Effect: "Allow"
+                Action:
+                  - "codebuild:BatchGetBuilds"
+                  - "codebuild:StartBuild"
+                  - "codebuild:BatchGetBuildBatches"
+                  - "codebuild:StartBuildBatch"
+                Resource: "*"
+          PolicyName: "AWS-CodeBuild-Access"
+        - PolicyDocument:
+            Version: "2012-10-17"
+            Statement:
+              - Effect: "Allow"
+                Action:
+                  - "devicefarm:ListProjects"
+                  - "devicefarm:ListDevicePools"
+                  - "devicefarm:GetRun"
+                  - "devicefarm:GetUpload"
+                  - "devicefarm:CreateUpload"
+                  - "devicefarm:ScheduleRun"
+                Resource: "*"
+          PolicyName: "AWS-Device-Farm-Access"
+        - PolicyDocument:
+            Version: "2012-10-17"
+            Statement:
+              - Effect: "Allow"
+                Action:
+                  - "servicecatalog:ListProvisioningArtifacts"
+                  - "servicecatalog:CreateProvisioningArtifact"
+                  - "servicecatalog:DescribeProvisioningArtifact"
+                  - "servicecatalog:DeleteProvisioningArtifact"
+                  - "servicecatalog:UpdateProduct"
+                Resource: "*"
+          PolicyName: "AWS-Service-Catalog-Access"
+        - PolicyDocument:
+            Version: "2012-10-17"
+            Statement:
+              - Effect: "Allow"
+                Action: "ecr:DescribeImages"
+                Resource: "*"
+          PolicyName: "Amazon-ECR-Access"
+        - PolicyDocument:
+            Version: "2012-10-17"
+            Statement:
+              - Effect: "Allow"
+                Action:
+                  - "states:DescribeExecution"
+                  - "states:DescribeStateMachine"
+                  - "states:StartExecution"
+                Resource: "*"
+          PolicyName: "AWS-Step-Functions-Access"
+        - PolicyDocument:
+            Version: "2012-10-17"
+            Statement:
+              - Effect: "Allow"
+                Action:
+                  - "appconfig:StartDeployment"
+                  - "appconfig:StopDeployment"
+                  - "appconfig:GetDeployment"
+                Resource: "*"
+          PolicyName: "AWS-AppConfig-Access"
+      Tags:
+        - Key: "Project"
+          Value: !Ref ProjectName
+
+  CodeBuildRole:
+    Type: AWS::IAM::Role
+    Properties:
+      AssumeRolePolicyDocument:
+        Version: "2012-10-17"
+        Statement:
+          - Effect: "Allow"
+            Principal:
+              Service: "codebuild.amazonaws.com"
+            Action: "sts:AssumeRole"
+      Description: "IAM role to run unit tests"
+      ManagedPolicyArns:
+        - "arn:aws:iam::aws:policy/AmazonS3ReadOnlyAccess"
+        - "arn:aws:iam::aws:policy/service-role/AWSLambdaBasicExecutionRole"
+      Tags:
+        - Key: "Project"
+          Value: !Ref ProjectName
+
+  CodeDeployRole:
+    Type: AWS::IAM::Role
+    Properties:
+      AssumeRolePolicyDocument:
+        Version: "2012-10-17"
+        Statement:
+          - Effect: "Allow"
+            Principal:
+              Service: "codedeploy.amazonaws.com"
+            Action: "sts:AssumeRole"
+      Description: "IAM role to push code revisions to Amazon EC2 Instances"
+      ManagedPolicyArns:
+        - "arn:aws:iam::aws:policy/service-role/AWSCodeDeployRole"
+      Tags:
+        - Key: "Project"
+          Value: !Ref ProjectName
+
+  CloudFormationRole:
+    Type: AWS::IAM::Role
+    Properties:
+      AssumeRolePolicyDocument:
+        Version: "2012-10-17"
+        Statement:
+          - Effect: "Allow"
+            Principal:
+              Service: "cloudformation.amazonaws.com"
+            Action: "sts:AssumeRole"
+      Description: "IAM role to deploy AWS CloudFormation stacks"
+      Policies:
+        - PolicyDocument:
+            Version: "2012-10-17"
+            Statement:
+              - Effect: "Allow"
+                Action:
+                  - "ec2:AuthorizeSecurityGroupIngress"
+                  - "ec2:CreateSecurityGroup"
+                  - "ec2:CreateTags"
+                  - "ec2:DeleteSecurityGroup"
+                  - "ec2:DeleteTags"
+                  - "ec2:DescribeInstances"
+                  - "ec2:DescribeSecurityGroups"
+                  - "ec2:DescribeTags"
+                  - "ec2:ModifyInstanceAttribute"
+                  - "ec2:RevokeSecurityGroupIngress"
+                  - "ec2:RunInstances"
+                  - "ec2:StopInstances"
+                  - "ec2:TerminateInstances"
+                Resource: "*"
+          PolicyName: "EC2-Access"
+        - PolicyDocument:
+            Version: "2012-10-17"
+            Statement:
+              - Effect: "Allow"
+                Action:
+                  - "iam:AddRoleToInstanceProfile"
+                  - "iam:AttachRolePolicy"
+                  - "iam:CreateInstanceProfile"
+                  - "iam:CreateRole"
+                  - "iam:DeleteInstanceProfile"
+                  - "iam:DeleteRole"
+                  - "iam:DetachRolePolicy"
+                  - "iam:PassRole"
+                  - "iam:RemoveRoleFromInstanceProfile"
+                  - "iam:TagRole"
+                  - "iam:UntagRole"
+                Resource: "*"
+          PolicyName: "IAM-Access"
+      Tags:
+        - Key: "Project"
+          Value: !Ref ProjectName
+
+  Pipeline:
+    Type: AWS::CodePipeline::Pipeline
+    Properties:
+      ArtifactStore:
+        Location: !Ref PipelineAmazonS3Bucket
+        Type: "S3"
+      RestartExecutionOnUpdate: true
+      RoleArn: !Sub "${PipelineRole.Arn}"
+      Stages:
+        - Actions:
+            - ActionTypeId:
+                Category: "Source"
+                Owner: "AWS"
+                Provider: "CodeStarSourceConnection"
+                Version: 1
+              Configuration:
+                ConnectionArn: !Ref GitHubConnectionArn
+                FullRepositoryId: "BluCloudEngineer/UWA-Git-Good-Presentation"
+                BranchName: "main"
+                OutputArtifactFormat: "CODE_ZIP"
+                DetectChanges: true
+              Name: "Source"
+              Namespace: "SourceSpace"
+              OutputArtifacts:
+                - Name: "SourceArtifacts"
+              Region: !Sub "${AWS::Region}"
+              RunOrder: 1
+          Name: "Source"
+        - Actions:
+            - ActionTypeId:
+                Category: "Test"
+                Owner: "AWS"
+                Provider: "CodeBuild"
+                Version: 1
+              Configuration:
+                ProjectName: !Ref CodeBuildProject
+              InputArtifacts:
+                - Name: "SourceArtifacts"
+              Name: "Test"
+              Namespace: "TestSpace"
+              OutputArtifacts:
+                - Name: "TestArtifacts"
+              Region: !Sub "${AWS::Region}"
+              RunOrder: 1
+          Name: "Test"
+        - Actions:
+            - ActionTypeId:
+                Category: "Deploy"
+                Owner: "AWS"
+                Provider: "CloudFormation"
+                Version: 1
+              Configuration:
+                ActionMode: "CREATE_UPDATE"
+                StackName: "UWA-Git-Good-Presentation-Webserver"
+                Capabilities: "CAPABILITY_IAM"
+                RoleArn: !Sub "${CloudFormationRole.Arn}"
+                TemplatePath: "SourceArtifacts::pipeline/webserver.yml"
+                OutputFileName: "UWA-Git-Good-Presentation-Webserver-Output.json"
+                ParameterOverrides: !Sub |
+                  {
+                    "ProjectName": "${ProjectName}"
+                  }
+              InputArtifacts:
+                - Name: "SourceArtifacts"
+              Name: "DeployWebServer"
+              Namespace: "DeployWebServerSpace"
+              OutputArtifacts:
+                - Name: "DeployWebServerArtifacts"
+              Region: !Sub "${AWS::Region}"
+              RunOrder: 1
+          Name: "DeployBackend"
+        - Actions:
+            - ActionTypeId:
+                Category: "Deploy"
+                Owner: "AWS"
+                Provider: "CodeDeploy"
+                Version: 1
+              Configuration:
+                ApplicationName: !Ref CodeDeployApplication
+                DeploymentGroupName: !Ref CodeDeployDeploymentGroup
+              InputArtifacts:
+                - Name: "SourceArtifacts"
+              Name: "DeployPythonCode"
+              Namespace: "DeployPythonCodeSpace"
+              Region: !Sub "${AWS::Region}"
+              RunOrder: 1
+          Name: "DeployCode"
+      Tags:
+        - Key: "Project"
+          Value: !Ref ProjectName
+
+  CodeBuildProject:
+    Type: AWS::CodeBuild::Project
+    Properties:
+      Artifacts:
+        Type: "CODEPIPELINE"
+      Description: "Run unit tests for the sample Python Flask web application"
+      Environment:
+        ComputeType: "BUILD_GENERAL1_SMALL"
+        Image: "aws/codebuild/standard:6.0" # Ubuntu 22.04
+        ImagePullCredentialsType: "CODEBUILD"
+        PrivilegedMode: false
+        Type: "LINUX_CONTAINER"
+      LogsConfig:
+        CloudWatchLogs:
+          GroupName: !Ref CodeBuildProjectLogGroup
+          Status: "ENABLED"
+      QueuedTimeoutInMinutes: 480 # 8 hours
+      ServiceRole: !Sub "${CodeBuildRole.Arn}"
+      Source:
+        BuildSpec: "buildspec.yml"
+        InsecureSsl: false
+        Type: "CODEPIPELINE"
+      Tags:
+        - Key: "Project"
+          Value: !Ref ProjectName
+      TimeoutInMinutes: 480 # 8 hours
+      Visibility: "PRIVATE"
+
+  CodeBuildProjectLogGroup:
+    Type: AWS::Logs::LogGroup
+    Properties:
+      RetentionInDays: 30
+      Tags:
+        - Key: "Project"
+          Value: !Ref ProjectName
+
+  CodeDeployApplication:
+    Type: AWS::CodeDeploy::Application
+    Properties:
+      ComputePlatform: "Server"
+      Tags:
+        - Key: "Project"
+          Value: !Ref ProjectName
+
+  CodeDeployDeploymentGroup:
+    Type: AWS::CodeDeploy::DeploymentGroup
+    Properties:
+      ApplicationName: !Ref CodeDeployApplication
+      AutoRollbackConfiguration:
+        Enabled: true
+        Events:
+          - "DEPLOYMENT_FAILURE"
+          - "DEPLOYMENT_STOP_ON_REQUEST"
+      DeploymentConfigName: "CodeDeployDefault.AllAtOnce"
+      Ec2TagFilters:
+        - Key: "Project"
+          Type: "KEY_AND_VALUE"
+          Value: !Ref ProjectName
+        - Key: "Client"
+          Type: "KEY_AND_VALUE"
+          Value: "UWA"
+      ServiceRoleArn: !Sub "${CodeDeployRole.Arn}"
+      Tags:
+        - Key: "Project"
+          Value: !Ref ProjectName
+
+#Outputs:

@@ -1,0 +1,133 @@
+AWSTemplateFormatVersion: "2010-09-09"
+Description: "Deploys an Amazon EC2 web server instance to host the sample Python Flask web application"
+
+Parameters:
+  ProjectName:
+    AllowedPattern: ".+"
+    ConstraintDescription: "You must provide a name for the project"
+    Description: "The name of the project deployed on AWS"
+    Type: "String"
+
+  EbsTotalIops:
+    ConstraintDescription: "The total number of IOPS must be greater than or equal to 3,000 and less than or equal to 16,000"
+    Default: 3000
+    Description: "The total IOPS of the EBS volume used by the EC2 Instance"
+    MaxValue: 16000
+    MinValue: 3000
+    Type: "Number"
+
+  EbsTotalStorage:
+    ConstraintDescription: "The total size of the EBS volume must be greater than or equal to 8 GB and less than or equal to 16,384 GB"
+    Default: 8 # GB
+    Description: "The total size (GB) of the EBS volume used by the EC2 Instance"
+    MaxValue: 16384
+    MinValue: 8
+    Type: "Number"
+
+  Ec2ImageId:
+    AllowedValues:
+      - "ami-0c641f2290e9cd048" # Amazon Linux 2 Kernel 5.10 AMI 2.0.20220719.0 x86_64 HVM gp2 | ap-southeast-2 (Sydney)
+    Default: "ami-0c641f2290e9cd048"
+    Description: "The Amazon Machine Image (AMI) to use for the EC2 Instance"
+    Type: "String"
+
+  Ec2InstanceSize:
+    AllowedValues:
+      - "t2.micro"
+    Default: "t2.micro"
+    Description: "The instance size for the EC2 Instance"
+    Type: "String"
+
+Resources:
+  WebServerIamRole:
+    Type: AWS::IAM::Role
+    Properties:
+      AssumeRolePolicyDocument:
+        Version: "2012-10-17"
+        Statement:
+          - Effect: "Allow"
+            Principal:
+              Service: "ec2.amazonaws.com"
+            Action: "sts:AssumeRole"
+      Description: "IAM Role to deploy code revisions to the EC2 Instance"
+      ManagedPolicyArns:
+        - "arn:aws:iam::aws:policy/service-role/AmazonEC2RoleforAWSCodeDeploy"
+      Tags:
+        - Key: "Project"
+          Value: !Ref ProjectName
+
+  WebServerIamInstanceProfile:
+    Type: AWS::IAM::InstanceProfile
+    Properties:
+      Roles:
+        - !Ref WebServerIamRole
+
+  WebServerInstance:
+    Type: AWS::EC2::Instance
+    Properties:
+      BlockDeviceMappings:
+        - DeviceName: "/dev/xvda"
+          Ebs:
+            DeleteOnTermination: true
+            Encrypted: true
+            Iops: !Ref EbsTotalIops
+            VolumeSize: !Ref EbsTotalStorage
+            VolumeType: "gp3"
+      DisableApiTermination: false
+      EbsOptimized: false
+      IamInstanceProfile: !Ref WebServerIamInstanceProfile
+      ImageId: !Ref Ec2ImageId
+      InstanceInitiatedShutdownBehavior: "stop"
+      InstanceType: !Ref Ec2InstanceSize
+      SecurityGroups:
+        - !Ref WebServerSecurityGroup
+      Tags:
+        - Key: "Name"
+          Value: "EC2 Webserver"
+        - Key: "Project"
+          Value: !Ref ProjectName
+        - Key: "Client"
+          Value: "UWA"
+      Tenancy: "default"
+      UserData:
+        Fn::Base64: !Sub |
+          #!/bin/bash
+          yum update -y
+          yum install curl ruby wget -y
+          amazon-linux-extras install docker -y
+          wget https://aws-codedeploy-${AWS::Region}.s3.${AWS::Region}.amazonaws.com/latest/install
+          chmod 700 install
+          ./install auto          
+          service docker start
+          usermod -a -G docker ec2-user
+          chkconfig docker on
+
+  WebServerSecurityGroup:
+    Type: AWS::EC2::SecurityGroup
+    Properties:
+      GroupDescription: "EC2 Webserver Security Group"
+      SecurityGroupIngress:
+        - CidrIp: "0.0.0.0/0"
+          Description: "HTTP access"
+          FromPort: 5000
+          IpProtocol: "tcp"
+          ToPort: 5000
+
+      Tags:
+        - Key: "Name"
+          Value: "EC2 Webserver Security Group"
+        - Key: "Project"
+          Value: !Ref ProjectName
+
+Outputs:
+  WebServerId:
+    Description: "The Instance ID of the Amazon EC2 webserver"
+    Value: !Ref WebServerInstance
+
+  WebServerPublicIpAddressUrl:
+    Description: "The URL of the Amazon EC2 webserver using the public IPv4 address"
+    Value: !Sub "http://${WebServerInstance.PublicIp}:5000/"
+
+  WebServerPublicDnsNameUrl:
+    Description: "The URL of the Amazon EC2 webserver using the public DNS name"
+    Value: !Sub "http://${WebServerInstance.PublicDnsName}:5000/"

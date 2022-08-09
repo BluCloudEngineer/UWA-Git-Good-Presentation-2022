@@ -1,0 +1,34 @@
+name: "Run Python PEP8 Linting"
+
+on:
+  push:
+    branches:
+      - "main"
+      - "develop"
+
+jobs:
+  Linting:
+    runs-on: "ubuntu-latest"
+    steps:
+      - name: "Checkout Code"
+        uses: actions/checkout@v2.4.2
+
+      - name: "autopep8"
+        uses: peter-evans/autopep8@v1.2.1
+        with:
+          args: --recursive --in-place --aggressive --aggressive .
+
+      - name: "Create Pull Request"
+        uses: peter-evans/create-pull-request@v4.0.4
+        with:
+          commit-message: "Python PEP 8 code formatting and linting"
+          branch: "refactor/python-formatting-linting"
+          delete-branch: true
+          title: "[AUTOMATED PR] - Python PEP 8 Code Formatting and Linting"
+          body: |
+            This is an automated pull request
+
+            It appears the most recent merge of the code does not conform to the Python PEP 8 standards. You can view the full Python PEP 8 guide [here](https://peps.python.org/pep-0008/).
+
+            Please review this pull request, confirm all unit tests are still functional and merge the code.
+          draft: false
