@@ -54,11 +54,11 @@ This file includes all URLs that were used during the development of this codeba
 | ------------------------------------ | ------------------------------------------------------------------------------------- |
 | autopep8                             | https://github.com/marketplace/actions/autopep8                                       |
 | Build and push Docker images         | https://github.com/marketplace/actions/build-and-push-docker-images                   |
+| Checkout                             | https://github.com/marketplace/actions/checkout                                       |
+| Create Pull Request                  | https://github.com/marketplace/actions/create-pull-request                            |
 | Docker Login                         | https://github.com/marketplace/actions/docker-login                                   |
 | Docker Setup Buildx                  | https://github.com/marketplace/actions/docker-setup-buildx                            |
 | Docker Setup QEMU                    | https://github.com/marketplace/actions/docker-setup-qemu                              |
-| Checkout                             | https://github.com/marketplace/actions/checkout                                       |
-| Create Pull Request                  | https://github.com/marketplace/actions/create-pull-request                            |
 | GitHub Actions                       | https://docs.github.com/en/actions                                                    |
 | GitHub Marketplace                   | https://github.com/marketplace                                                        |
 | Quickstart for GitHub Actions        | https://docs.github.com/en/actions/quickstart                                         |
