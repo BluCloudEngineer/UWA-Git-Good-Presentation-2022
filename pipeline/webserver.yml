@@ -98,6 +98,10 @@ Resources:
           wget https://aws-codedeploy-${AWS::Region}.s3.${AWS::Region}.amazonaws.com/latest/install
           chmod 700 install
           ./install auto
+          amazon-linux-extras install docker -y
+          service docker start
+          usermod -a -G docker ec2-user
+          chkconfig docker on
 
   WebServerSecurityGroup:
     Type: AWS::EC2::SecurityGroup
