@@ -12,8 +12,8 @@ hooks:
     - location: "pipeline/scripts/stop_service.sh"
       timeout: 300
       runas: root
-
-  Install:
+    
+  AfterInstall:
     - location: "pipeline/scripts/install_service.sh"
       timeout: 300
       runas: root
