@@ -2,4 +2,4 @@
 pwd
 ls -lha
 env
-docker build -t uwagitgoodwebapp .
+docker build -t uwagitgoodwebapp -f /tmp/webapp/Dockerfile .

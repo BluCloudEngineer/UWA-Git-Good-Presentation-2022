@@ -26,3 +26,6 @@ hooks:
     - location: "start_service.sh"
       timeout: 300
       runas: root
+    - location: "cleanup_service.sh"
+      timeout: 300
+      runas: root
