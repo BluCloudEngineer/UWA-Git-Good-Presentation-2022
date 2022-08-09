@@ -14,7 +14,7 @@ hooks:
       runas: root
 
   Install:
-    - location: "pipeline/scripts/install_dependencies.sh"
+    - location: "pipeline/scripts/install_service.sh"
       timeout: 300
       runas: root
 

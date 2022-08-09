@@ -1,3 +1,2 @@
 #!/bin/bash
-export FLASK_APP=app.py
-python3 -m flask run --host=0.0.0.0
+docker run -d --rm -p 5000:5000 uwagitgoodwebapp:latest
