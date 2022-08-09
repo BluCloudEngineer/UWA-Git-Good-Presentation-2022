@@ -1,5 +1,6 @@
 #!/bin/bash
+cd /tmp/webapp
 pwd
 ls -lha
 env
-docker build -t uwagitgoodwebapp -f /tmp/webapp/Dockerfile .
+docker build -t uwagitgoodwebapp .
