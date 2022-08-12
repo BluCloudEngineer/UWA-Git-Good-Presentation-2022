@@ -132,14 +132,18 @@ docker build -t uwagitgoodwebapp .
 To run the Python web application Docker Container, run the following command:
 
 ```bash
-docker run -it --rm -p 5000:5000 uwagitgoodwebapp:latest
+docker run -it --rm -p 80:5000 uwagitgoodwebapp:latest
 ```
 
 ## Web Application Usage
 
-The steps in this section are the same whether you run the code locally or using a Docker container.
+The usage commands are slightly different when running the code locally or using a Docker container. Follow the instructions based on how you plan to run the code.
 
-### Main Webpage
+### Local Usage
+
+Follow this section if you are going to run the Python code on your local machine and not use a Docker container:
+
+#### Main Webpage
 
 Open a web browser and navigate [to](http://127.0.0.1:5000/):
 
@@ -153,7 +157,7 @@ or open a Terminal and run the following command:
 curl -X GET http://127.0.0.1:5000/
 ```
 
-### Greeter API - Default Response
+#### Greeter API - Default Response
 
 Open a web browser and navigate [to](http://127.0.0.1:5000/greeter):
 
@@ -167,7 +171,7 @@ or open a Terminal and run the following command:
 curl -X GET http://127.0.0.1:5000/greeter
 ```
 
-### Greeter API - Custom Response
+#### Greeter API - Custom Response
 
 Open a web browser and navigate [to](http://127.0.0.1:5000/greeter?name=test):
 
@@ -182,3 +186,69 @@ curl -X GET http://127.0.0.1:5000/greeter?name=test
 ```
 
 You can change the value of `name` to any string value of your choosing.
+
+### Docker Container Usage
+
+Follow this section if you are going to run the Python code as a Docker container:
+
+#### Main Webpage
+
+Open a web browser and navigate [to](http://127.0.0.1/):
+
+```
+http://127.0.0.1/
+```
+
+or open a Terminal and run the following command:
+
+```bash
+curl -X GET http://127.0.0.1/
+```
+
+### Greeter API - Default Response
+
+Open a web browser and navigate [to](http://127.0.0.1/greeter):
+
+```
+http://127.0.0.1/greeter
+```
+
+or open a Terminal and run the following command:
+
+```bash
+curl -X GET http://127.0.0.1/greeter
+```
+
+### Greeter API - Custom Response
+
+Open a web browser and navigate [to](http://127.0.0.1/greeter?name=test):
+
+```
+http://127.0.0.1/greeter?name=test
+```
+
+or open a Terminal and run the following command:
+
+```bash
+curl -X GET http://127.0.0.1/greeter?name=test
+```
+
+You can change the value of `name` to any string value of your choosing.
+
+## AWS Lab Cleanup
+
+If you have deployed the AWS CodePipeline pipeline in your AWS account, follow the instructions to delete and cleanup your AWS account:
+
+1.  Login to the AWS Management Console.
+
+2.  Change your Region to `ap-southeast-2 (Sydney)` (if you haven't already).
+
+3.  Once logged in, navigate to the `AWS CloudFormation Console`.
+
+4.  Select the `UWA-Git-Good-Presentation-Webserver` stack, press `Delete` then `Delete stack`.
+
+5.  Once the `UWA-Git-Good-Presentation-Webserver` stack has been deleted, select the `UWA-Git-Good-Presentation-Pipeline` stack, press `Delete` then `Delete stack`.
+
+6.  Navigate to the `Amazon S3 Console`.
+
+7.  Empty the default Amazon S3 Buckets used by `AWS CloudFormation` and `AWS CodePipeline`.
