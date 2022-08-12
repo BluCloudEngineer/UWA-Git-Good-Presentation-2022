@@ -17,7 +17,7 @@ def default():
 @app.route("/greeter", methods=["GET"])
 def greeter():
     """
-    When calling this APi endpoint you must supply a
+    When calling this API endpoint you must supply a
     parameter called "name".
 
     Depending on the value of name, return different
