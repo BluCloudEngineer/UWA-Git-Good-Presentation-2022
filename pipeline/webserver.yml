@@ -109,9 +109,9 @@ Resources:
       SecurityGroupIngress:
         - CidrIp: "0.0.0.0/0"
           Description: "HTTP access"
-          FromPort: 5000
+          FromPort: 80
           IpProtocol: "tcp"
-          ToPort: 5000
+          ToPort: 80
 
       Tags:
         - Key: "Name"
