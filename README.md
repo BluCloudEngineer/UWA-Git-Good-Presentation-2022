@@ -132,7 +132,7 @@ docker build -t uwagitgoodwebapp .
 To run the Python web application Docker Container, run the following command:
 
 ```bash
-docker run -it --rm -p 5000:5000 uwagitgoodwebapp:latest
+docker run -it --rm -p 80:5000 uwagitgoodwebapp:latest
 ```
 
 ## Web Application Usage
