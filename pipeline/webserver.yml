@@ -126,8 +126,8 @@ Outputs:
 
   WebServerPublicIpAddressUrl:
     Description: "The URL of the Amazon EC2 webserver using the public IPv4 address"
-    Value: !Sub "http://${WebServerInstance.PublicIp}:5000/"
+    Value: !Sub "http://${WebServerInstance.PublicIp}"
 
   WebServerPublicDnsNameUrl:
     Description: "The URL of the Amazon EC2 webserver using the public DNS name"
-    Value: !Sub "http://${WebServerInstance.PublicDnsName}:5000/"
+    Value: !Sub "http://${WebServerInstance.PublicDnsName}"
