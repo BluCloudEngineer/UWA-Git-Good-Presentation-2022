@@ -165,6 +165,7 @@ def test_default_request():
         assert response.content_type == "text/html; charset=utf-8"
         assert response.data.decode("utf-8") == test[1]
 
+
 def test_readme_example():
     """
     Make a HTTP GET request to the greeter API endpoint with
