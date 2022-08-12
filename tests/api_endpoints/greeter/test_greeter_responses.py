@@ -1,3 +1,6 @@
+"""
+Python Flask web application Unit Tests
+"""
 import pytest
 from app import app
 
@@ -161,3 +164,19 @@ def test_default_request():
         assert response.status_code == 200
         assert response.content_type == "text/html; charset=utf-8"
         assert response.data.decode("utf-8") == test[1]
+
+def test_readme_example():
+    """
+    Make a HTTP GET request to the greeter API endpoint with
+    the name parameter set to test, just like in the
+    README.md file
+    """
+    # Make HTTP response
+    response = app.test_client().get("/greeter", query_string={
+        "name": "test"
+    })
+
+    # Run assertions
+    assert response.status_code == 200
+    assert response.content_type == "text/html; charset=utf-8"
+    assert response.data.decode("utf-8") == "Hi Test!"
