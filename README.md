@@ -234,3 +234,21 @@ curl -X GET http://127.0.0.1/greeter?name=test
 ```
 
 You can change the value of `name` to any string value of your choosing.
+
+## AWS Lab Cleanup
+
+If you have deployed the AWS CodePipeline pipeline in your AWS account, follow the instructions to delete and cleanup your AWS account:
+
+1.  Login to the AWS Management Console.
+
+2.  Change your Region to `ap-southeast-2 (Sydney)` (if you haven't already).
+
+3.  Once logged in, navigate to the `AWS CloudFormation Console`.
+
+4.  Select the `UWA-Git-Good-Presentation-Webserver` stack, press `Delete` then `Delete stack`.
+
+5.  Once the `UWA-Git-Good-Presentation-Webserver` stack has been deleted, select the `UWA-Git-Good-Presentation-Pipeline` stack, press `Delete` then `Delete stack`.
+
+6.  Navigate to the `Amazon S3 Console`.
+
+7.  Empty the default Amazon S3 Buckets used by `AWS CloudFormation` and `AWS CodePipeline`.
