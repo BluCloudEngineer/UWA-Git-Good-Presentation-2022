@@ -7,6 +7,13 @@ Parameters:
     Description: "The name of the project deployed on AWS"
     Type: "String"
 
+  TargetBranch:
+    AllowedPattern: ".+"
+    ConstraintDescription: "You must supply a value for the name of the GitHub branch to use for the pipeline"
+    Default: "main"
+    Description: "The name of the GitHub branch to use for the pipeline"
+    Type: "String"
+
   PipelineAmazonS3Bucket:
     AllowedPattern: ".+"
     ConstraintDescription: "You must enter the name of the Amazon S3 Bucket used by AWS CodePipeline"
@@ -296,7 +303,7 @@ Resources:
               Configuration:
                 ConnectionArn: !Ref GitHubConnectionArn
                 FullRepositoryId: "BluCloudEngineer/UWA-Git-Good-Presentation"
-                BranchName: "main"
+                BranchName: !Ref TargetBranch
                 OutputArtifactFormat: "CODE_ZIP"
                 DetectChanges: true
               Name: "Source"
