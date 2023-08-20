@@ -434,5 +434,3 @@ Resources:
       Tags:
         - Key: "Project"
           Value: !Ref ProjectName
-
-#Outputs:
