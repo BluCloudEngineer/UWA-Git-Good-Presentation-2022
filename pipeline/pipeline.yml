@@ -302,7 +302,7 @@ Resources:
                 Version: 1
               Configuration:
                 ConnectionArn: !Ref GitHubConnectionArn
-                FullRepositoryId: "BluCloudEngineer/UWA-Git-Good-Presentation"
+                FullRepositoryId: "BluCloudEngineer/UWA-Git-Good-Presentation-2022"
                 BranchName: !Ref TargetBranch
                 OutputArtifactFormat: "CODE_ZIP"
                 DetectChanges: true
