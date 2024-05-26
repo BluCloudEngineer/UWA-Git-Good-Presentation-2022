@@ -11,7 +11,7 @@ assignees: ""
 
 ## Bug Report Checklist
 
-Before submitting a new bug, please view the currently reported bugs [here](https://github.com/BluCloudEngineer/UWA-Git-Good-Presentation/issues). If your bug has not been reported, please complete this report:
+Before submitting a new bug, please view the currently reported bugs [here](https://github.com/BluCloudEngineer/UWA-Git-Good-Presentation-2022/issues). If your bug has not been reported, please complete this report:
 
 *   [ ] I have checked the GitHub issues tracker and my bug has **NOT** been previously reported.
 *   [ ] This report is for a single bug only, I will create a new report for a new bug to report.

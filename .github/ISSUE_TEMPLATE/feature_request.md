@@ -11,7 +11,7 @@ assignees: ""
 
 ## New Feature Checklist
 
-Before submitting a new feature, please view the currently requested features [here](https://github.com/BluCloudEngineer/UWA-Git-Good-Presentation/issues). If your feature has not been submitted, please complete this report:
+Before submitting a new feature, please view the currently requested features [here](https://github.com/BluCloudEngineer/UWA-Git-Good-Presentation-2022/issues). If your feature has not been submitted, please complete this report:
 
 *   [ ] I have checked the GitHub issues tracker and my feature has **NOT** been previously submitted.
 *   [ ] This report is for a single feature only, I will create a new report for a new feature to request.
