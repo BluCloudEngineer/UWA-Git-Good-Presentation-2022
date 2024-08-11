@@ -94,13 +94,17 @@ To run linting over the code, run the following commands in Visual Studio Code:
 To run all unit tests, run the following command:
 
 ```bash
-python3.10 -m pytest tests/
+python3 -m pytest tests/
+# OR
+python3 -m pytest tests/ --junitxml=tests/report.xml
 ```
 
 If you want to print the tests standard output to the screen, run the following command:
 
 ```bash
-python3.10 -m pytest -s tests/
+python3 -m pytest -s tests/
+# OR
+python3 -m pytest -s tests/ --junitxml=tests/report.xml
 ```
 
 ## Local Development
