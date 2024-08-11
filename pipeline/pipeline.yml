@@ -210,6 +210,19 @@ Resources:
       ManagedPolicyArns:
         - "arn:aws:iam::aws:policy/AmazonS3ReadOnlyAccess"
         - "arn:aws:iam::aws:policy/service-role/AWSLambdaBasicExecutionRole"
+      Policies:
+        - PolicyName: "CodeBuildPermissions"
+          PolicyDocument:
+            Version: "2012-10-17"
+            Statement:
+              - Effect: "Allow"
+                Action:
+                  - "codebuild:BatchPutCodeCoverages"
+                  - "codebuild:BatchPutTestCases"
+                  - "codebuild:CreateReport"
+                  - "codebuild:CreateReportGroup"
+                  - "codebuild:UpdateReport"
+                Resource: "*"
       Tags:
         - Key: "Project"
           Value: !Ref ProjectName
