@@ -291,6 +291,8 @@ Resources:
       ArtifactStore:
         Location: !Ref PipelineAmazonS3Bucket
         Type: "S3"
+      ExecutionMode: "QUEUED"
+      PipelineType: "V2"
       RestartExecutionOnUpdate: true
       RoleArn: !Sub "${PipelineRole.Arn}"
       Stages:
