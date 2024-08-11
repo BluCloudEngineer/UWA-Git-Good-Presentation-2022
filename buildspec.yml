@@ -11,4 +11,12 @@ phases:
 
   build:
     commands:
-      - python3 -m pytest tests/
+      - python3 -m pytest tests/ --junitxml=tests/report.xml
+
+reports:
+  UWA-Git-Good-Presentation-2022-Unit-Test-Report:
+    files:
+      - "*.xml"
+    base-directory: "tests/"
+    file-format: "JUNITXML"
+    discard-paths: "yes"
