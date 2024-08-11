@@ -386,7 +386,7 @@ Resources:
       Description: "Run unit tests for the sample Python Flask web application"
       Environment:
         ComputeType: "BUILD_GENERAL1_SMALL"
-        Image: "aws/codebuild/standard:6.0" # Ubuntu 22.04
+        Image: "aws/codebuild/standard:7.0" # Ubuntu 22.04
         ImagePullCredentialsType: "CODEBUILD"
         PrivilegedMode: false
         Type: "LINUX_CONTAINER"
