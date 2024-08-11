@@ -210,6 +210,19 @@ Resources:
       ManagedPolicyArns:
         - "arn:aws:iam::aws:policy/AmazonS3ReadOnlyAccess"
         - "arn:aws:iam::aws:policy/service-role/AWSLambdaBasicExecutionRole"
+      Policies:
+        - PolicyName: "CodeBuildPermissions"
+          PolicyDocument:
+            Version: "2012-10-17"
+            Statement:
+              - Effect: "Allow"
+                Action:
+                  - "codebuild:BatchPutCodeCoverages"
+                  - "codebuild:BatchPutTestCases"
+                  - "codebuild:CreateReport"
+                  - "codebuild:CreateReportGroup"
+                  - "codebuild:UpdateReport"
+                Resource: "*"
       Tags:
         - Key: "Project"
           Value: !Ref ProjectName
@@ -291,6 +304,8 @@ Resources:
       ArtifactStore:
         Location: !Ref PipelineAmazonS3Bucket
         Type: "S3"
+      ExecutionMode: "QUEUED"
+      PipelineType: "V2"
       RestartExecutionOnUpdate: true
       RoleArn: !Sub "${PipelineRole.Arn}"
       Stages:
@@ -384,7 +399,7 @@ Resources:
       Description: "Run unit tests for the sample Python Flask web application"
       Environment:
         ComputeType: "BUILD_GENERAL1_SMALL"
-        Image: "aws/codebuild/standard:6.0" # Ubuntu 22.04
+        Image: "aws/codebuild/standard:7.0" # Ubuntu 22.04
         ImagePullCredentialsType: "CODEBUILD"
         PrivilegedMode: false
         Type: "LINUX_CONTAINER"

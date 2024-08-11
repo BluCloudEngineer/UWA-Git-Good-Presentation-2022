@@ -40,6 +40,7 @@ This file includes all URLs that were used during the development of this codeba
 | GitHub connections                                    | https://docs.aws.amazon.com/codepipeline/latest/userguide/connections-github.html                            |
 | Install Docker on Amazon Linux 2                      | https://gist.github.com/npearce/6f3c7826c7499587f00957fee62f8ee9                                             |
 | Install the CodeDeploy agent for Amazon Linux or RHEL | https://docs.aws.amazon.com/codedeploy/latest/userguide/codedeploy-agent-operations-install-linux.html       |
+| Set up test reporting with pytest                     | https://docs.aws.amazon.com/codebuild/latest/userguide/test-report-pytest.html                               |
 
 ### Docker
 

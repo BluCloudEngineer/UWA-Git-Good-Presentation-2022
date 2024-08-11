@@ -175,3 +175,7 @@ cython_debug/
 # Built Visual Studio Code Extensions
 *.vsix
 # --------------------------
+
+# --- Python unit tests ---
+tests/*.xml
+# -------------------------
